@@ -1,5 +1,5 @@
 .page {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: white;
   margin: 0;
   font-family: 'Inter', Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
@@ -13,4 +13,5 @@
 }
 .page__container {
   max-width: 1200px;
+  margin: 0 auto;
 }

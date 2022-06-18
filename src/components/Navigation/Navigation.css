@@ -1,0 +1,34 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 38px;
+}
+.navigation__right {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding-right: 25px;
+}
+.button {
+  height: 32px;
+  border-radius: 3px;
+  border-width: 0;
+  background-color: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.button:hover {
+  background-color: #e8e8e8;
+  cursor: pointer;
+}
+.button_active {
+  background: #2be080;
+}
+.button_active:hover {
+  background: #06aa52;
+  cursor: pointer;
+}
