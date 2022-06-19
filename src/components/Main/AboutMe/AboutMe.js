@@ -6,7 +6,7 @@ function AboutMe() {
     <div className="aboutme page__container">
       <h2 className="aboutme__title">Студент</h2>
       <div className="aboutme__two-columns">
-        <div className="aboutme__info">
+        <div className="aborder-radius: 10px;">
           <h3 className="aboutme__name">Елена</h3>
           <p className="aboutme__job">Фронтенд-разработчик, 30 лет</p>
           <p className="aboutme__desc">
