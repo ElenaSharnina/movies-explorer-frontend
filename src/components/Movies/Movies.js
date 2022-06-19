@@ -1,6 +1,6 @@
 import React from "react";
 
-function Profile() {
+function Movies() {
   return (
     <>
 
@@ -8,4 +8,4 @@ function Profile() {
   )
 }
 
-export default Profile;
+export default Movies;
