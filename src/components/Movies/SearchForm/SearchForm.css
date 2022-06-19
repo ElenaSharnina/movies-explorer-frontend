@@ -1,6 +1,7 @@
 .searchform {
   padding-top: 70px;
-  padding-bottom: 80px;
+  padding-bottom: 69px;
+  border-bottom: 1px solid #E8E8E8;
 }
 
 .searchform__container {
@@ -60,6 +61,7 @@
   width: 80px;
   height: 35px;
   background-color: inherit;
+  transition: 0.3s ease all;
 }
 
 .searchform__submit:hover {

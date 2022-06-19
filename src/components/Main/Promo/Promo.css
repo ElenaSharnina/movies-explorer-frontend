@@ -26,6 +26,7 @@
 .promo__button {
   background: #e8e8e8;
   border-radius: 10px;
+  transition: 0.3s ease all;
 }
 
 .promo__button:hover {

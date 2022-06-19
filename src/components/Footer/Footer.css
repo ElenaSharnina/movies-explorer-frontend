@@ -1,3 +1,7 @@
+.footer {
+  padding-top: 80px;
+}
+
 .footer__desc {
   font-weight: 400;
   font-size: 13px;
@@ -34,6 +38,7 @@
 
 .footer__social-item {
   list-style-type: none;
+  transition: 0.3s ease all;
 }
 
 .footer__social-item:hover {
