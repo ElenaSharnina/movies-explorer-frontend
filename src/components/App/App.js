@@ -15,27 +15,25 @@ function App() {
     <div className="page">
       <Switch>
         <Route exact path="/">
-          <Header />
+          <Header loggedIn={false} />
           <Main />
         </Route>
         <Route path="/movies">
-          <Header />
+          <Header loggedIn={true} isVisited={true} />
           <Movies />
         </Route>
         <Route path="/saved-movies">
-          <Header />
+          <Header loggedIn={true} isVisited={false} />
           <SavedMovies />
         </Route>
         <Route path="/profile">
-          <Header />
+          <Header loggedIn={true} />
           <Profile />
         </Route>
         <Route path="/signin">
-          <Header />
           <Login />
         </Route>
         <Route path="/signup">
-          <Header />
           <Register />
         </Route>
       </Switch>

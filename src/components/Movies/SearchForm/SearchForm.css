@@ -1,0 +1,144 @@
+.searchform {
+  padding-top: 70px;
+  padding-bottom: 80px;
+}
+
+.searchform__container {
+  width: 100%;
+  min-height: 72px;
+  background: #f9f9f9;
+  border: 0;
+  border-radius: 9px;
+}
+
+.searchform__form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+}
+
+.searchform__input {
+  min-height: 72px;
+  width: 70%;
+  border: 0;
+  background-color: inherit;
+  padding-left: 60px;
+  padding-right: 20px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 17px;
+  outline: none;
+}
+
+.searchform__input:focus {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 9px;
+}
+
+.searchform__lupa {
+  position: absolute;
+  top: 19px;
+  left: 19px;
+}
+
+.searchform__input::placeholder {
+  padding-left: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #a0a0a0;
+}
+
+
+.searchform__submit {
+  background-image: url(../../../images/searchBtn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  width: 80px;
+  height: 35px;
+  background-color: inherit;
+}
+
+.searchform__submit:hover {
+  background-image: url(../../../images/searchBtnHover.svg);
+  cursor: pointer;
+}
+
+.checkbox__option {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.checkbox__container {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  border-left: 1px solid #E8E8E8;
+  height: 40px;
+}
+
+.checkbox__knobs,
+.checkbox__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.checkbox__label {
+  position: relative;
+  display: flex;
+  width: 36px;
+  height: 19px;
+  margin-right: 14px;
+}
+.checkbox__label .checkbox__layer {
+  border-radius: 100px;
+}
+.checkbox {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+.checkbox__knobs {
+  z-index: 2;
+}
+.checkbox__layer {
+  width: 100%;
+  background-color: #fefbfb;
+  border: 2px solid #2BE080;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+.checkbox__knobs:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  background-color: #2BE080;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+.checkbox:checked + .checkbox__knobs:before {
+  content: "";
+  left: 22px;
+  background-color: white;
+}
+.checkbox:checked ~ .checkbox__layer {
+  background-color: #3ddc84;
+}
+.checkbox__knobs,
+.checkbox__knobs:before,
+.checkbox__layer {
+  transition: 0.3s ease all;
+}

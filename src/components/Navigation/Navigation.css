@@ -4,6 +4,8 @@
   width: 100%;
 }
 .navigation__right {
+  justify-self: flex-end;
+  align-self:flex-end;
   display: flex;
   flex-direction: row;
   gap: 30px;
@@ -29,4 +31,9 @@
 .button_active:hover {
   background: #06aa52;
   cursor: pointer;
+}
+.button_disactive-text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px
 }
