@@ -17,18 +17,21 @@ function App() {
         <Route exact path="/">
           <Header loggedIn={false} />
           <Main />
+          <Footer />
         </Route>
         <Route path="/movies">
           <Header loggedIn={true} isVisited={true} />
           <Movies />
+          <Footer />
         </Route>
         <Route path="/saved-movies">
           <Header loggedIn={true} isVisited={false} />
           <SavedMovies />
+          <Footer />
         </Route>
         <Route path="/profile">
           <Header loggedIn={true} />
-          <Profile />
+          <Profile name={"Виталий"} email={"pochta@yandex.ru"} />
         </Route>
         <Route path="/signin">
           <Login />
@@ -37,7 +40,7 @@ function App() {
           <Register />
         </Route>
       </Switch>
-      <Footer />
+
     </div>
   );
 }

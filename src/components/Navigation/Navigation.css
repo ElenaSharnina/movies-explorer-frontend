@@ -12,7 +12,7 @@
 }
 .button {
   height: 32px;
-  border-radius: 3px;
+  border-radius: 20px;
   border-width: 0;
   background-color: inherit;
   font-weight: 500;
@@ -20,6 +20,10 @@
   line-height: 16px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.navigation__button_type_account {
+  background: #F9F9F9;
 }
 .button:hover {
   background-color: #e8e8e8;

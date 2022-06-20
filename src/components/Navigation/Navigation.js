@@ -11,7 +11,7 @@ function Navigation({ loggedIn, isVisited }) {
               <button className={`navigation__button button ${isVisited ? 'button_disactive-text' : ''}`}>Сохраненные фильмы</button>
             </div>
             <div className="navigation__right">
-              <button className="navigation__button button">Аккаунт</button>
+              <button className="navigation__button button navigation__button_type_account">Аккаунт</button>
             </div >
           </>
           )
