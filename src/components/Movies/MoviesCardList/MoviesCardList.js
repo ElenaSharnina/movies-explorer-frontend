@@ -13,24 +13,32 @@ import Image10 from "../../../images/cards/cards10.png";
 import Image11 from "../../../images/cards/cards11.jpg";
 import Image12 from "../../../images/cards/cards12.jpg";
 
-function MoviesCardList() {
+function MoviesCardList({ isInSaveMovies }) {
   return (
-    < section className="cards page__container">
+    <section className="cards page__container">
       <ul className="cards__list">
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image1} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image2} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image3} isSaved={true} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image4} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image5} isSaved={true} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image6} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image7} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image8} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image9} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image10} isSaved={true} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image11} isSaved={false} />
-        <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image12} isSaved={false} />
+        {isInSaveMovies ?
+          (
+            <><MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image1} isSaved={false} isInSaveMovies={isInSaveMovies} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image2} isSaved={false} isInSaveMovies={isInSaveMovies} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image3} isSaved={true} isInSaveMovies={isInSaveMovies} />
+            </>)
+          :
+          (
+            <><MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image1} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image2} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image3} isSaved={true} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image4} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image5} isSaved={true} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image6} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image7} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image8} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image9} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image10} isSaved={true} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image11} isSaved={false} />
+              <MoviesCard name={"33 слова о дизайне"} duration={"1ч 47м"} link={Image12} isSaved={false} /></>)}
       </ul>
-      <button type="button" className="cards__button">Ещё</button>
+      <button type="button" className={`${isInSaveMovies ? "cards__button_hidden" : "cards__button"}`}>Ещё</button>
     </section>
   )
 }

@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
 }
 
 .moviescard__name {
@@ -46,4 +47,22 @@
 
 .moviescard__button_active {
   background-image: url(../../../images/savedIcon.svg);
+}
+
+.moviescard__button_type_delete {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  border: none;
+  background-color: inherit;
+  top: 19px;
+  right: 14px;
+  transition: 0.3s ease all;
+  background-image: url(../../../images/delete.svg);
+}
+
+.moviescard__button_type_delete:hover {
+  transition: 0.3s ease all;
+  cursor: pointer;
+  background-image: url(../../../images/deleteHover.svg);
 }

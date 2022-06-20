@@ -18,8 +18,11 @@
   background-color: white;
   transition: 0.3s ease all;
   margin: 80px auto 0 auto;
+  display: block;
 }
-
+.cards__button_hidden {
+  display: none;
+}
 .cards__button:hover {
   background-color: #E8E8E8;
 }
