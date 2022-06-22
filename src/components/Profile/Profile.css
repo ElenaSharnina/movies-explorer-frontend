@@ -73,6 +73,8 @@
   transition: 0.3s ease all;
   padding: 7px 20px;
   border-radius: 20px;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .profile__button_type_exit {

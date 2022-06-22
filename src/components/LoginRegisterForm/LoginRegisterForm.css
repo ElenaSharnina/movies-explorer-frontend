@@ -1,0 +1,63 @@
+.login-register {
+  display: flex;
+  flex-direction: column;
+  max-width: 396px;
+  margin: 0 auto;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.login-register__greetings {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  padding: 40px 0;
+  margin: 0;
+}
+.login-register__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-register__button {
+  margin-top: 140px;
+  background: #2be080;
+  border-radius: 3px;
+  border: none;
+  height: 45px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+.login-register__button:hover {
+  cursor: pointer;
+  background: #0da454;
+  transition: 0.3s ease all;
+}
+
+.login-register__span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #a0a0a0;
+}
+
+.login-register__bth-enter {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #2be080;
+  border: none;
+  background-color: inherit;
+  transition: 0.3s ease all;
+}
+
+.login-register__bth-enter:hover {
+  cursor: pointer;
+  color: #12bb61;
+}
