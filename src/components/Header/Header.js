@@ -5,7 +5,7 @@ import Navigation from "../Navigation/Navigation";
 function Header({ loggedIn, isVisited }) {
   return (
     <div className="header page__container">
-      <img src={logo} className="header__logo" alt="Логотип" />
+      <img src={logo} className="logo header__logo" alt="Логотип" />
       <Navigation loggedIn={loggedIn} isVisited={isVisited} />
     </div>
   )
