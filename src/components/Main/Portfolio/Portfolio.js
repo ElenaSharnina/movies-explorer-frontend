@@ -3,7 +3,7 @@ import LinkImage from "../../../images/link.svg";
 
 function Portfolio() {
   return (
-    <div className="portfolio page__container">
+    <section className="portfolio page__container">
       <h2 className="portfolio__title">Портфолио</h2>
       <ul className="portfolio__list">
         <li className="portfolio__list-item">
@@ -40,7 +40,7 @@ function Portfolio() {
           </a>
         </li>
       </ul>
-    </div>
+    </section>
   );
 }
 

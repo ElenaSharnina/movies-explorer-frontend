@@ -34,3 +34,10 @@
   row-gap: 44px;
   padding-left: 0;
 }
+
+@media screen and (max-width: 1239px) {
+  .cards {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

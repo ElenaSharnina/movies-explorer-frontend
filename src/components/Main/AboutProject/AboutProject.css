@@ -1,6 +1,6 @@
 .aboutproject {
   max-width: 1140px;
-  padding: 110px 0;
+  padding: 110px 50px 110px 50px;
 }
 
 .aboutproject__title {
@@ -69,3 +69,5 @@
   padding-top: 14px;
   margin: 0;
 }
+
+

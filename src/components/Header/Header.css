@@ -3,6 +3,8 @@
   flex-direction: row;
   height: 74px;
   align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 .header__logo {
   padding-right: 25px;
