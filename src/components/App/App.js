@@ -1,7 +1,5 @@
 import React from "react";
-import { Route, Switch } from 'react-router-dom';
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import { Route, Routes } from 'react-router-dom';
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
@@ -14,37 +12,15 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 function App() {
   return (
     <div className="page">
-      <Switch>
-        <Route exact path="/">
-          <Header loggedIn={false} />
-          <Main />
-          <Footer />
-        </Route>
-        <Route path="/movies">
-          <Header loggedIn={true} isVisited={true} />
-          <Movies />
-          <Footer />
-        </Route>
-        <Route path="/saved-movies">
-          <Header loggedIn={true} isVisited={false} />
-          <SavedMovies />
-          <Footer />
-        </Route>
-        <Route path="/profile">
-          <Header loggedIn={true} />
-          <Profile name={"Виталий"} email={"pochta@yandex.ru"} />
-        </Route>
-        <Route path="/signin">
-          <Login />
-        </Route>
-        <Route path="/signup">
-          <Register />
-        </Route>
-        <Route path="*">
-          <PageNotFound />
-        </Route>
-      </Switch>
-
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path="/profile" element={<Profile name={"Виталий"} email={"pochta@yandex.ru"} />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </div>
   );
 }

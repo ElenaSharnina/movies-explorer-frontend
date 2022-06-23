@@ -3,7 +3,7 @@ import LoginRegisterForm from "../LoginRegisterForm/LoginRegisterForm";
 
 function Register() {
   return (
-    <LoginRegisterForm greetings={'Добро пожаловать!'} submitText={'Зарегистрироваться'} spanText={'Уже зарегистрированы?'} spanButtonText={'Войти'}
+    <LoginRegisterForm greetings={'Добро пожаловать!'} submitText={'Зарегистрироваться'} isInRigister={true}
       inputs={<>
         <label className="register__label" htmlFor="text-input">Имя</label>
         <input className="register__input"
