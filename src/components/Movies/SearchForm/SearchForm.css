@@ -151,3 +151,10 @@
     padding-right: 30px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .searchform {
+    padding-top: 80px;
+    padding-bottom: 120px;
+  }
+}

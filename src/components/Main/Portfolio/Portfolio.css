@@ -36,3 +36,12 @@
 .portfolio__list-item {
   list-style-type: none;
 }
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding-top: 90px;
+  }
+  .portfolio__list {
+    padding-bottom: 90px;
+  }
+}

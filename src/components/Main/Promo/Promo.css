@@ -14,6 +14,8 @@
   font-size: 50px;
   line-height: 58px;
   padding-top: 160px;
+  text-align: center;
+  margin: 0;
 }
 .promo__nav {
   display: flex;
@@ -36,5 +38,24 @@
 @media screen and (max-width: 1239px) {
   .promo {
     max-width: calc(100% - 40px);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .promo__title {
+    font-size: 40px;
+    line-height: 52px;
+  }
+  
+}
+@media screen and (max-width: 768px) {
+  .promo {
+    min-height: 834px;
+  }
+  .promo__nav {
+    padding-top: 314px;
+  }
+  .promo__title {
+    padding-top: 350px;
   }
 }

@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
-        <Route path="/profile" element={<Profile name={"Виталий"} email={"pochta@yandex.ru"} />} />
+        <Route path="/profile" element={<Profile username={"Виталий"} useremail={"pochta@yandex.ru"} />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="*" element={<PageNotFound />} />

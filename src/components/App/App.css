@@ -11,6 +11,7 @@
   padding: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 .page__container {
   max-width: 1140px;

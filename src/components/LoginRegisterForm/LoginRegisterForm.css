@@ -17,10 +17,16 @@
 .login-register__form {
   display: flex;
   flex-direction: column;
+  height: 366px;
+  justify-content: space-between;
+}
+
+.login-register__fields {
+  display: flex;
+  flex-direction: column;
 }
 
 .login-register__button {
-  margin-top: 140px;
   background: #2be080;
   border-radius: 3px;
   border: none;
@@ -60,4 +66,20 @@
 .login-register__bth-enter:hover {
   cursor: pointer;
   color: #12bb61;
+}
+
+@media screen and (max-width: 768px) {
+  .login-register {
+    min-height: 560px;
+    width: 90%;
+    height: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }

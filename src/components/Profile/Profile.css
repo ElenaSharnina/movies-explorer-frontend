@@ -52,7 +52,7 @@
   line-height: 13px;
   text-align: right;
   border: none;
-  padding:  10px 10px 10px 0;
+  padding: 10px 10px 10px 0;
   margin-bottom: 10px;
 }
 .profile__input:hover {
@@ -85,4 +85,22 @@
 .profile__button:hover {
   cursor: pointer;
   background-color: #e8e8e8;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__greetings {
+    padding-bottom: 96px;
+  }
+  .profile {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
