@@ -7,19 +7,19 @@ function AboutProject() {
       <ul className="aboutproject__two-columns">
         <li className="aboutproject__column">
           <h3 className="aboutproject__column-title">
-            Дипломный проект включал 5 этапов
+            Дипломный проект включал 5&nbsp;этапов
           </h3>
-          <p className="aboutpriject__description">
+          <p className="aboutproject__description">
             Составление плана, работу над бэкендом, вёрстку, добавление
-            функциональности и финальные доработки.
+            функциональности и&nbsp;финальные доработки.
           </p>
         </li>
         <li className="aboutproject__column">
           <h3 className="aboutproject__column-title">
-            На выполнение диплома ушло 5 недель
+            На&nbsp;выполнение диплома ушло 5&nbsp;недель
           </h3>
-          <p className="aboutpriject__description">
-            У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
+          <p className="aboutproject__description">
+            У&nbsp;каждого этапа был мягкий и&nbsp;жёсткий дедлайн, которые нужно было
             соблюдать, чтобы успешно защититься.
           </p>
         </li>

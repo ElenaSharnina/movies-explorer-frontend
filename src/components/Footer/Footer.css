@@ -52,3 +52,26 @@
   line-height: 16px;
   color: black;
 }
+
+@media screen and (max-width: 550px) {
+  .footer__info {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+  .footer__social-list {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer__data {
+    font-size: 12px;
+    line-height: 15px;
+    color: #a0a0a0;
+  }
+  .footer__social-item a {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

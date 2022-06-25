@@ -29,7 +29,7 @@
   margin: 0 0 26px;
 }
 
-.aboutpriject__description {
+.aboutproject__description {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -76,5 +76,37 @@
   .aboutpriject__description {
     font-size: 12px;
     line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutproject {
+    padding: 70px 14px;
+  }
+  .aboutproject__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .aboutproject__two-columns {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    flex-direction: column;
+    gap: 56px;
+  }
+  .aboutproject__column-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .aboutproject__description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .aboutproject__timing-title {
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .aboutproject__timing-desc {
+    font-size: 11px;
+    line-height: 13px;
   }
 }

@@ -9,7 +9,7 @@
   margin: 0 auto;
 }
 .promo__title {
-  width: 713px;
+  max-width: 713px;
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
@@ -57,5 +57,35 @@
   }
   .promo__title {
     padding-top: 350px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .promo__title {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .promo__title {
+    padding-top: 220px;
+    font-size: 29px;
+    line-height: 37px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .promo__nav {
+    padding-top: 217px;
+    gap: 5px;
+  }
+  .promo {
+    min-height: auto;
+    max-width: calc(100% - 28px);
+  }
+  .promo__button {
+    font-size: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }

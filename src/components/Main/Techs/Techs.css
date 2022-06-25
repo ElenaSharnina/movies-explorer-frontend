@@ -86,3 +86,37 @@
     line-height: 15px;
   }
 }
+
+@media screen and (max-width: 730px) {
+  .techs__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .techs {
+    padding: 70px 18px;
+  }
+  .techs__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .techs__heading {
+    padding-top: 60px;
+    padding-bottom: 24px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .techs__desc {
+    font-size: 11px;
+    line-height: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .techs__list {
+    grid-template-columns: 1fr 1fr;
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+}
