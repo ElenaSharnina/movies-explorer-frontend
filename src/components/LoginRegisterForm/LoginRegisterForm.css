@@ -83,3 +83,24 @@
     padding-bottom: 0;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .login-register a,
+  .login-register__greetings {
+    align-self: center;
+  }
+  .login-register__greetings {
+    padding-bottom: 80px;
+  }
+  .login-register {
+    height: 88vh;
+  }
+  .login-register__form {
+    height: 65vh;
+    min-height: none;
+  }
+  .login-register__button, .login-register__span, .login-register__bth-enter {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

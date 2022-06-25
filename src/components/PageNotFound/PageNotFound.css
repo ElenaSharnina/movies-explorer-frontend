@@ -44,3 +44,18 @@
     padding-top: 0;
   }
 }
+
+@media screen and (max-width: 430px) {
+  .not-found__image {
+    width: 50vw;
+  }
+  .not-found__text {
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    margin-bottom: 36vh;
+  }
+  .not-found {
+    height: 15%;
+  }
+}

@@ -92,8 +92,7 @@
     padding-bottom: 96px;
   }
   .profile {
-    width: 50%;
-    height: 50%;
+    height: 63%;
     position: fixed;
     top: 0;
     left: 0;
@@ -103,4 +102,17 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__greetings {
+    padding-bottom: 80px;
+  }
+  .profile__container {
+    height: 90vh;
+  }
+  .profile__item:nth-child(2) {
+    padding-bottom: 40vh;
+  }
+
 }

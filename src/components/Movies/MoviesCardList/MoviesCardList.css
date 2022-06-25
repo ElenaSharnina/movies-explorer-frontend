@@ -49,3 +49,22 @@
     row-gap: 36px;
   }
 }
+
+@media screen and (max-width: 550px) {
+  .cards__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cards {
+    padding: 40px 10px 0 10px;
+  }
+  .cards__list {
+    gap: 16px;
+  }
+  .cards__button {
+    width: 75%;
+    margin-bottom: 80px;
+  }
+}

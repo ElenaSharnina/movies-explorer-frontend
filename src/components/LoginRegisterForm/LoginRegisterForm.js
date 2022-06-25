@@ -11,7 +11,7 @@ function LoginRegisterForm({ greetings, submitText, inputs, isInRigister }) {
         <div className="login-register__fields">
           {inputs}
         </div>
-        <button type='submit' className="login-register__button">{submitText}</button>
+        <button type="submit" className="login-register__button">{submitText}</button>
       </form>
       {isInRigister ?
         (<span className="login-register__span">Уже зарегистрированы?<NavLink to="/signin"><button className="login-register__bth-enter">Войти</button></NavLink></span>)

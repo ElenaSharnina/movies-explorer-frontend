@@ -150,4 +150,19 @@
   .navigation__right {
     gap: 14px;
   }
+  .burger {
+    right: -14px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .burger-menu__container {
+    width: 100vw;
+  }
+  .burger-menu__link_type_account {
+    padding-bottom: 46px;
+  }
+  .burger-menu__link {
+    padding-bottom: 24px;
+  }
 }

@@ -6,15 +6,17 @@ function SearchForm() {
     <section className="searchform page__container">
       <div className="searchform__container">
         <form className="searchform__form">
-          <input
-            type="search"
-            placeholder="Фильм"
-            className="searchform__input"
-            autoComplete="off"
-            required
-          />
-          <img className="searchform__lupa" src={Lupa} alt="Здесь поиск" />
-          <input type="submit" value=" " className="searchform__submit" />
+          <div className="searchform__form-container">
+            <input
+              type="search"
+              placeholder="Фильм"
+              className="searchform__input"
+              autoComplete="off"
+              required
+            />
+            <img className="searchform__lupa" src={Lupa} alt="Здесь поиск" />
+            <input type="submit" value=" " className="searchform__submit" />
+          </div>
           <div className="checkbox__container">
             <label className="checkbox__label">
               <input type="checkbox" className="checkbox" />
