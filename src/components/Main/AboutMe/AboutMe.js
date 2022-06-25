@@ -8,20 +8,36 @@ function AboutMe() {
       <div className="aboutme__two-columns">
         <div className="aborder-radius: 10px;">
           <h3 className="aboutme__name">Елена</h3>
-          <p className="aboutme__job">Фронтенд-разработчик, 30 лет</p>
+          <p className="aboutme__job">Фронтенд-разработчик, 31 год</p>
           <p className="aboutme__desc">
-            Я родился и живу в Саратове, закончил факультет экономики СГУ. У
-            меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
-            бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
-            Контур». После того, как прошёл курс по веб-разработке, начал
-            заниматься фриланс-заказами и ушёл с постоянной работы.
+            Я&nbsp;родилась в&nbsp;городе Йошкар-Ола, 10&nbsp;лет проживаю
+            в&nbsp;Московской области. Закончила факультет международных
+            отношений в&nbsp;МарГУ по&nbsp;специальности
+            &laquo;Менеджмент&raquo;. Последние годы работала менеджером
+            по&nbsp;продажам, а&nbsp;последние пару лет&nbsp;&mdash; менеджером
+            по&nbsp;логистике и&nbsp;закупкам. Год назад пошла учиться
+            в&nbsp;Яндекс.Практикум и&nbsp;полюбила кодить больше всего
+            на&nbsp;свете. В&nbsp;свободное время занимаюсь английским, люблю
+            экстримальные виды спорта: эндуро, сноуборд.
           </p>
           <ul className="aboutme__social-links">
             <li className="aboutme__social-link">
-              <a href="https://facebook.com" target="_blank" rel="nooperen noreferrer">Facebook</a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="nooperen noreferrer"
+              >
+                Facebook
+              </a>
             </li>
             <li className="aboutme__social-link">
-              <a href="https://github.com/ElenaSharnina" target="_blank" rel="nooperen noreferrer">Github</a>
+              <a
+                href="https://github.com/ElenaSharnina"
+                target="_blank"
+                rel="nooperen noreferrer"
+              >
+                Github
+              </a>
             </li>
           </ul>
         </div>
