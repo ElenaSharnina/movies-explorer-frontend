@@ -6,6 +6,7 @@
   padding-left: 30px;
   padding-right: 30px;
 }
+
 .header__logo {
   padding-right: 25px;
 }
@@ -15,6 +16,7 @@
   width: 38px;
   transition: 0.3s ease all;
 }
+
 .logo:hover {
   opacity: 0.7;
 }

@@ -15,11 +15,13 @@
   padding-left: 14px;
   padding-bottom: 9px;
 }
+
 .moviescard__image {
   width: 100%;
   aspect-ratio: 364/203;
   object-fit: cover;
 }
+
 .moviescard__duration {
   padding-left: 14px;
   padding-bottom: 14px;
@@ -29,7 +31,8 @@
   line-height: 13px;
   color: #a0a0a0;
 }
-.moviescard__button{
+
+.moviescard__button {
   border: none;
   background-color: inherit;
   background-image: url(../../../images/toSaveIcon.svg);
@@ -60,7 +63,6 @@
   transition: 0.3s ease all;
   background-image: url(../../../images/delete.svg);
 }
-
 .moviescard__button_type_delete:hover {
   transition: 0.3s ease all;
   cursor: pointer;

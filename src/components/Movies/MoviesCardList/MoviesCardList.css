@@ -26,6 +26,7 @@
 .cards__button:hover {
   background-color: #e8e8e8;
 }
+
 .cards__list {
   display: grid;
   margin: 0;

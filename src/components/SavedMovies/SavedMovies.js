@@ -12,7 +12,7 @@ function SavedMovies() {
       <MoviesCardList isInSaveMovies={true} />
       <Footer />
     </>
-  )
+  );
 }
 
 export default SavedMovies;

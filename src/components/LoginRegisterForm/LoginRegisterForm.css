@@ -14,10 +14,11 @@
   padding: 40px 0;
   margin: 0;
 }
+
 .login-register__form {
   display: flex;
   flex-direction: column;
-  height: 366px;
+  min-height: 366px;
   justify-content: space-between;
 }
 
@@ -30,7 +31,7 @@
   background: #2be080;
   border-radius: 3px;
   border: none;
-  height: 45px;
+  min-height: 45px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -94,12 +95,24 @@
   }
   .login-register {
     height: 88vh;
+    margin-top: 56px;
+    min-height: 400px;
   }
   .login-register__form {
     height: 65vh;
-    min-height: none;
+    min-height: 200px;
   }
-  .login-register__button, .login-register__span, .login-register__bth-enter {
+  .login-register__button,
+  .login-register__span,
+  .login-register__bth-enter {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .login-register__bth-enter {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .login-register__span {
     font-size: 12px;
     line-height: 15px;
   }

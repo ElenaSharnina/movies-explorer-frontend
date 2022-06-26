@@ -7,8 +7,8 @@ function Techs() {
         <h2 className="techs__title">Технологии</h2>
         <h3 className="techs__heading">7 технологий</h3>
         <p className="techs__desc">
-          На&nbsp;курсе веб-разработки мы&nbsp;освоили технологии, которые применили в
-          дипломном проекте.
+          На&nbsp;курсе веб-разработки мы&nbsp;освоили технологии, которые
+          применили в дипломном проекте.
         </p>
         <ul className="techs__list">
           <li className="techs__item">HTML</li>

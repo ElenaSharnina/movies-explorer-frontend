@@ -59,6 +59,12 @@
   cursor: text;
 }
 
+.profile__input:focus {
+  outline: none;
+  border: 1px solid #2be080;
+  border-radius: 9px;
+}
+
 .profile__item:nth-child(2) {
   padding-top: 17px;
   padding-bottom: 220px;
@@ -92,7 +98,7 @@
     padding-bottom: 96px;
   }
   .profile {
-    height: 63%;
+    height: 50%;
     position: fixed;
     top: 0;
     left: 0;

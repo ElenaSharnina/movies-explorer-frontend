@@ -12,6 +12,7 @@
   margin: 0;
   border-bottom: 1px solid black;
 }
+
 .aboutproject__two-columns {
   display: flex;
   flex-direction: row;

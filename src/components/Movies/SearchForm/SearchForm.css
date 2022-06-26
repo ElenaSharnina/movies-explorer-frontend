@@ -31,7 +31,7 @@
 
 .searchform__input {
   min-height: 72px;
-  width: 70%;
+  width: 90%;
   border: 0;
   background-color: inherit;
   padding-left: 60px;
@@ -40,6 +40,11 @@
   font-size: 18px;
   line-height: 17px;
   outline: none;
+}
+
+.searchform__input:hover {
+  border: 1px solid rgba(43, 185, 14, 0.3);
+  border-radius: 9px;
 }
 
 .searchform__input:focus {
