@@ -1,0 +1,70 @@
+.moviescard {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+.moviescard__name {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  margin: 0;
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-bottom: 9px;
+}
+
+.moviescard__image {
+  width: 100%;
+  aspect-ratio: 364/203;
+  object-fit: cover;
+}
+
+.moviescard__duration {
+  padding-left: 14px;
+  padding-bottom: 14px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #a0a0a0;
+}
+
+.moviescard__button {
+  border: none;
+  background-color: inherit;
+  background-image: url(../../../images/toSaveIcon.svg);
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  transition: 0.3s ease all;
+}
+.moviescard__button:hover {
+  background-image: url(../../../images/saveIconHover.svg);
+  cursor: pointer;
+}
+
+.moviescard__button_active {
+  background-image: url(../../../images/savedIcon.svg);
+}
+
+.moviescard__button_type_delete {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  border: none;
+  background-color: inherit;
+  top: 19px;
+  right: 14px;
+  transition: 0.3s ease all;
+  background-image: url(../../../images/delete.svg);
+}
+.moviescard__button_type_delete:hover {
+  transition: 0.3s ease all;
+  cursor: pointer;
+  background-image: url(../../../images/deleteHover.svg);
+}

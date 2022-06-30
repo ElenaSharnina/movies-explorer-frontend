@@ -1,0 +1,86 @@
+.infoTooltip {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  transition: all 0.7s ease;
+  opacity: 0;
+}
+
+.infoTooltip_active {
+  visibility: visible;
+  display: flex;
+  opacity: 1;
+}
+
+.infoTooltip__image {
+  width: 120px;
+  height: 120px;
+  align-self: center;
+}
+
+.infoTooltip__close-icon {
+  background-image: url(../../images/closeIcon.svg);
+  background-size: cover;
+  position: absolute;
+  top: -39px;
+  right: -41px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background-color: transparent;
+}
+.infoTooltip__close-icon:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.infoTooltip__text {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+}
+
+.infoTooltip__container {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding-top: 60px;
+  width: 430px;
+  min-height: 181px;
+  border-radius: 10px;
+  padding: 34px 36px 37px 34px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .infoTooltip__container {
+    margin: auto 19px;
+    padding: 25px 22px 25px 22px;
+  }
+  .infoTooltip__close-icon {
+    width: 20px;
+    height: 20px;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .infoTooltip__text {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+  }
+}
