@@ -19,12 +19,18 @@ function SearchForm({ onSearch, onCheckClick, checked }) {
     }
   }
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onSearch(value1);
+  }
+
   return (
     <section className="searchform page__container">
       <div className="searchform__container">
-        <form className="searchform__form" onSubmit={onSearch}>
+        <form className="searchform__form" onSubmit={handleSubmit}>
           <div className="searchform__form-container">
             <input
+              id='keyword'
               value={value1}
               onChange={handleInput1Change}
               type="search"

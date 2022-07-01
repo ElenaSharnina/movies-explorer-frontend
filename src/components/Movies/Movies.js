@@ -13,18 +13,21 @@ function Movies({ isInSaveMovies }) {
 
 
   //поиск фильмов
-  function handleSearch(evt) {
-    evt.preventDefault();
+  function handleSearch(keyword) {
     setPreloaderIsVisible(true);
     getMovies()
       .then((movies) => {
-        const shortMovies = movies.filter((movie) => {
+
+        console.log(movies);
+        const filterMovies = movies.filter(
+          (film) => film.nameRU.toLowerCase().indexOf(keyword.toLowerCase()) > -1,
+        );
+        const shortMovies = filterMovies.filter((movie) => {
           return movie.duration < 40
         });
-        const longMovies = movies.filter((movie) => {
+        const longMovies = filterMovies.filter((movie) => {
           return movie.duration > 40
         });
-        console.log(movies);
         if (checked) {
           setMoviesToRender(shortMovies);
         }
