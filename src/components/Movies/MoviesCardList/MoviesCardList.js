@@ -15,8 +15,9 @@ function MoviesCardList(props) {
 
   return (
     <section className="cards page__container">
+      <Preloader isVisible={props.isVisible} />
       <ul className="cards__list">
-        <Preloader isVisible={props.isVisible} />
+
         {props.isInSaveMovies ?
           (
             <>

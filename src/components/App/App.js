@@ -17,7 +17,7 @@ function App() {
     <main className="page">
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies" element={<Movies isInSaveMovies={false} />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
         <Route
           path="/profile"

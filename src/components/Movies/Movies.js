@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import getMovies from '../../utils/MoviesApi';
 
-function Movies() {
+function Movies({ isInSaveMovies }) {
 
   const [moviesToRender, setMoviesToRender] = React.useState([]);
   const [preloaderIsVisible, setPreloaderIsVisible] = React.useState(false);
@@ -16,8 +16,9 @@ function Movies() {
     evt.preventDefault();
     setPreloaderIsVisible(true);
     getMovies()
-      .then((res) => {
-        console.log(res);
+      .then((movies) => {
+        console.log(movies);
+        setMoviesToRender(movies);
       })
       .catch((err) => {
         console.log(err);
@@ -30,7 +31,7 @@ function Movies() {
     <>
       <Header loggedIn={true} isVisited={true} />
       <SearchForm onSearch={handleSearch} />
-      <MoviesCardList isInSaveMovies={false} moviesToRender={moviesToRender} isVisible={preloaderIsVisible} />
+      <MoviesCardList isInSaveMovies={isInSaveMovies} moviesToRender={moviesToRender} isVisible={preloaderIsVisible} />
       <Footer />
     </>
   )
