@@ -9,6 +9,7 @@ function Movies({ isInSaveMovies }) {
 
   const [moviesToRender, setMoviesToRender] = React.useState([]);
   const [preloaderIsVisible, setPreloaderIsVisible] = React.useState(false);
+  const [checked, setChecked] = React.useState(true);
 
 
   //поиск фильмов
@@ -17,8 +18,17 @@ function Movies({ isInSaveMovies }) {
     setPreloaderIsVisible(true);
     getMovies()
       .then((movies) => {
+        const shortMovies = movies.filter((movie) => {
+          return movie.duration < 40
+        });
+        const longMovies = movies.filter((movie) => {
+          return movie.duration > 40
+        });
         console.log(movies);
-        setMoviesToRender(movies);
+        if (checked) {
+          setMoviesToRender(shortMovies);
+        }
+        else setMoviesToRender(longMovies)
       })
       .catch((err) => {
         console.log(err);
@@ -27,10 +37,16 @@ function Movies({ isInSaveMovies }) {
         setPreloaderIsVisible(false);
       });
   }
+  if (checked) {
+    console.log('hi');
+  }
+  function handleCheckClick() {
+    setChecked(!checked);
+  }
   return (
     <>
       <Header loggedIn={true} isVisited={true} />
-      <SearchForm onSearch={handleSearch} />
+      <SearchForm onSearch={handleSearch} onCheckClick={handleCheckClick} checked={checked} />
       <MoviesCardList isInSaveMovies={isInSaveMovies} moviesToRender={moviesToRender} isVisible={preloaderIsVisible} />
       <Footer />
     </>

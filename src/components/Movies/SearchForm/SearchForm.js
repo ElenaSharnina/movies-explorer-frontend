@@ -2,7 +2,7 @@ import React from "react";
 import Lupa from "../../../images/searchLupa.svg";
 import { useState } from 'react';
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, onCheckClick, checked }) {
   //валидация 
   const [value1, setValue1] = useState('');
   const [isValid1, setValidity1] = useState(false);
@@ -18,18 +18,7 @@ function SearchForm({ onSearch }) {
       setError1('');
     }
   }
-  //сабмит кнопки
-  function handleSearchSubmit(evt) {
-    evt.preventDefault();
-    if (isValid1) {
-      setError1('');
-      onSearch(value1.key);
-    } else if (value1.key.length < 1) {
-      setError1('Нужно ввести ключевое слово');
-    } else {
-      setError1(error1.key);
-    }
-  }
+
   return (
     <section className="searchform page__container">
       <div className="searchform__container">
@@ -51,7 +40,7 @@ function SearchForm({ onSearch }) {
           </div>
           <div className="checkbox__container">
             <label className="checkbox__label">
-              <input type="checkbox" className="checkbox" />
+              <input type="checkbox" className="checkbox" onChange={onCheckClick} defaultChecked={checked} />
               <div className="checkbox__knobs"></div>
               <div className="checkbox__layer"></div>
             </label>
