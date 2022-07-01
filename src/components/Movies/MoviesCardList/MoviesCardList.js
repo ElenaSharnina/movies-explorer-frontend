@@ -1,21 +1,15 @@
-
 import React from "react";
-import { useState, useEffect } from 'react';
-import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader"
-
+import MoviesCard from "../MoviesCard/MoviesCard";
 
 
 function MoviesCardList(props) {
 
-  // const [filteredMovies, setFilteredMovies] = useState([]);
-  // useEffect(() => {
-  //   setFilteredMovies();
-  // }, [])
-
   return (
     <section className="cards page__container">
       <Preloader isVisible={props.isVisible} />
+      <p className={`${props.resNotFound ? "res-not-found" : "res-not-found_hidden"}`}>По вашему запросу ничего не найдено</p>
+      <p className={`${props.serverError ? "server-error" : "server-error_hidden"}`}>Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</p>
       <ul className="cards__list">
 
         {props.isInSaveMovies ?
