@@ -1,6 +1,8 @@
+
 import React from "react";
 import { useState, useEffect } from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
+import Preloader from "../Preloader/Preloader"
 
 
 
@@ -14,6 +16,7 @@ function MoviesCardList(props) {
   return (
     <section className="cards page__container">
       <ul className="cards__list">
+        <Preloader isVisible={props.isVisible} />
         {props.isInSaveMovies ?
           (
             <>

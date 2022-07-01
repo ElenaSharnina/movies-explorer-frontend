@@ -8,10 +8,13 @@ import getMovies from '../../utils/MoviesApi';
 function Movies() {
 
   const [moviesToRender, setMoviesToRender] = React.useState([]);
+  const [preloaderIsVisible, setPreloaderIsVisible] = React.useState(false);
+
 
   //поиск фильмов
   function handleSearch(evt) {
     evt.preventDefault();
+    setPreloaderIsVisible(true);
     getMovies()
       .then((res) => {
         console.log(res);
@@ -20,14 +23,14 @@ function Movies() {
         console.log(err);
       })
       .finally(() => {
-        // выключаем прелоадер
+        setPreloaderIsVisible(false);
       });
   }
   return (
     <>
       <Header loggedIn={true} isVisited={true} />
       <SearchForm onSearch={handleSearch} />
-      <MoviesCardList isInSaveMovies={false} moviesToRender={moviesToRender} />
+      <MoviesCardList isInSaveMovies={false} moviesToRender={moviesToRender} isVisible={preloaderIsVisible} />
       <Footer />
     </>
   )
