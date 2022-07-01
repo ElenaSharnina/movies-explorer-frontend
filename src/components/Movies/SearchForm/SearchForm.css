@@ -82,6 +82,11 @@
   cursor: pointer;
 }
 
+.searchform__submit:disabled {
+  background-image: url(../../../images/cards/searchDisabled.svg);
+  cursor: default;
+}
+
 .checkbox__option {
   font-weight: 400;
   font-size: 13px;
@@ -195,6 +200,9 @@
   .searchform {
     padding-bottom: 45px;
   }
+  .searchform__error {
+    top: 85px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -210,4 +218,14 @@
   .searchform__input {
     padding-left: 19px;
   }
+  
+}
+
+.searchform__error {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  position: absolute;
+  bottom: -30px;
 }

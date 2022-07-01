@@ -1,22 +1,22 @@
 import React from "react";
 
-function MoviesCard({ name, duration, link, isSaved, isInSaveMovies }) {
+function MoviesCard(props) {
   return (
     <li className="moviescard">
-      {isInSaveMovies ? (
+      {props.isInSaveMovies ? (
         <button type="button" className="moviescard__button_type_delete"></button>
       ) : (
         <button
           type="button"
-          className={`${isSaved
+          className={`${props.isSaved
             ? "moviescard__button moviescard__button_active"
             : "moviescard__button"
             }`}
         ></button>
       )}
-      <h2 className="moviescard__name">{name}</h2>
-      <p className="moviescard__duration">{duration}</p>
-      <img className="moviescard__image" src={link} alt={name} />
+      <h2 className="moviescard__name">{props.card.nameRU}</h2>
+      <p className="moviescard__duration">{props.card.duration}</p>
+      <img className="moviescard__image" src={`https://api.nomoreparties.co${props.card.image.url}`} alt={props.card.nameRU} />
     </li>
   );
 }
