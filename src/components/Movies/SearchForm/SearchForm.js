@@ -28,6 +28,10 @@ function SearchForm({ onSearch, onCheckClick, checked }) {
     onSearch(value);
   }
 
+  const handleChange = () => {
+    onCheckClick(value);
+  }
+
   return (
     <section className="searchform page__container">
       <div className="searchform__container">
@@ -35,7 +39,7 @@ function SearchForm({ onSearch, onCheckClick, checked }) {
           <div className="searchform__form-container">
             <input
               id='keyword'
-              value={value}
+              value={value || ""}
               onChange={handleInput1Change}
               type="search"
               placeholder="Фильм"
@@ -50,7 +54,7 @@ function SearchForm({ onSearch, onCheckClick, checked }) {
           </div>
           <div className="checkbox__container">
             <label className="checkbox__label">
-              <input type="checkbox" className="checkbox" onChange={onCheckClick} defaultChecked={checked} />
+              <input type="checkbox" className="checkbox" onChange={handleChange} defaultChecked={checked} />
               <div className="checkbox__knobs"></div>
               <div className="checkbox__layer"></div>
             </label>

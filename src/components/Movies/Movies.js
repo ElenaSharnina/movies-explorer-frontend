@@ -1,81 +1,204 @@
 import React from "react";
+import { useMediaPredicate } from "react-media-hook";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import getMovies from '../../utils/MoviesApi';
+import getMovies from "../../utils/MoviesApi";
 
 function Movies({ isInSaveMovies }) {
-
+  const [allMovies, setAllMovies] = React.useState([]);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [filteredLongMovies, setFilteredLongMovies] = React.useState([]);
+  const [filteredShortMovies, setFilteredShortMovies] = React.useState([]);
   const [moviesToRender, setMoviesToRender] = React.useState([]);
   const [preloaderIsVisible, setPreloaderIsVisible] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
   const [resNotFound, setResNotFound] = React.useState(false);
   const [serverError, setServerError] = React.useState(false);
+  const [anotherButtonVisible, setAnotherButtonVisible] = React.useState(false);
+  const isMobile = useMediaPredicate("(max-width: 550px)");
+  const isPad = useMediaPredicate("(min-width: 551px)");
+  const isDexstop = useMediaPredicate("(min-width: 768px)");
+
+  const setCountInitialCards = () => {
+    let i;
+    if (isDexstop) {
+      i = 12;
+    } else if (isPad) {
+      i = 8;
+    } else if (isMobile) {
+      i = 5;
+    }
+    return i;
+  };
+  const [maxCards, setMaxCards] = React.useState(setCountInitialCards());
+
+  const setCountAnotherCards = () => {
+    let i;
+    if (isDexstop) {
+      i = 3;
+    } else if (isPad) {
+      i = 2;
+    } else if (isMobile) {
+      i = 2;
+    }
+    return i;
+  };
+
+
+  const setDefaultStates = () => {
+    setAnotherButtonVisible(false);
+    setMaxCards(setCountInitialCards());
+    setMoviesToRender([]);
+    localStorage.removeItem("movies");
+    localStorage.removeItem("long-movies");
+    localStorage.removeItem("short-movies");
+  };
+
+  React.useEffect(() => {
+    if (allMovies.length === 0) {
+      getMovies()
+        .then((movies) => {
+          setAllMovies(movies);
+          console.log(movies);
+        })
+        .catch((err) => {
+          console.log(err);
+          setServerError(true);
+        });
+    }
+  }, []);
+
+
+  const getMoviesToRender = (films) => {
+    const movies = [];
+    for (let i = 0; i < maxCards && i < films.length; i += 1) {
+      movies.push(films[i]);
+    }
+    setMoviesToRender(movies);
+    setTimeout(() => {
+      if (films.length > maxCards) {
+        setAnotherButtonVisible(true);
+      } else {
+        setAnotherButtonVisible(false);
+      }
+    }, 300);
+  };
 
 
   //поиск фильмов
   function handleSearch(keyword) {
+    setDefaultStates();
     setPreloaderIsVisible(true);
-    getMovies()
-      .then((movies) => {
+    const filterMovies = allMovies.filter(
+      (film) => film.nameRU.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+    );
+    const shortMovies = filterMovies.filter((movie) => {
+      return movie.duration < 40;
+    });
+    const longMovies = filterMovies.filter((movie) => {
+      return movie.duration > 40;
+    });
 
-        console.log(movies);
-        const filterMovies = movies.filter(
-          (film) => film.nameRU.toLowerCase().indexOf(keyword.toLowerCase()) > -1,
-        );
-        const shortMovies = filterMovies.filter((movie) => {
-          return movie.duration < 40
-        });
-        const longMovies = filterMovies.filter((movie) => {
-          return movie.duration > 40
-        });
-        if (checked) {
-          setServerError(false);
-          setMoviesToRender(shortMovies);
-          if (shortMovies.length < 1) {
-            setResNotFound(true);
-          }
-          else {
-            setResNotFound(false);
-          }
-        }
-        else {
-          setMoviesToRender(longMovies);
-          setServerError(false);
-          if (longMovies.length < 1) {
-            setResNotFound(true);
-          }
-          else {
-            setResNotFound(false);
-          }
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setServerError(true);
-        setResNotFound(false);
-      })
-      .finally(() => {
+    if (filterMovies.length > 0) {
+      setFilteredMovies(filterMovies);
+      localStorage.setItem("movies", JSON.stringify(filterMovies));
+    }
+    if (longMovies.length > 0) {
+      setFilteredLongMovies(longMovies);
+      localStorage.setItem("long-movies", JSON.stringify(longMovies));
+    } else {
+      setFilteredLongMovies([]);
+      setResNotFound(true);
+    }
+    if (shortMovies.length > 0) {
+      setFilteredShortMovies(shortMovies);
+      localStorage.setItem("short-movies", JSON.stringify(shortMovies));
+    } else {
+      setFilteredShortMovies([]);
+      setResNotFound(true);
+    }
+
+    if (filterMovies.length === 0) {
+      setFilteredMovies([]);
+      setFilteredLongMovies([]);
+      setTimeout(() => {
+        setResNotFound(true);
         setPreloaderIsVisible(false);
-        setServerError(false);
-      });
+      }, 300);
+    }
   }
+  function getMoviesFromStorage(itemName) {
+    return JSON.parse(localStorage.getItem(itemName));
+  }
+  const renderMovies = () => {
+    if (!checked) {
+      setServerError(false);
+      if (filteredMovies.length > 0) {
+        getMoviesToRender(filteredMovies);
+      } else if (
+        filteredMovies.length === 0 &&
+        localStorage.getItem("movies")
+      ) {
+        getMoviesToRender(getMoviesFromStorage("movies"));
+      } else {
+        setResNotFound(false);
+        setMoviesToRender([]);
+      }
+    } else {
+      if (filteredShortMovies.length > 0) {
+        getMoviesToRender(filteredShortMovies);
+      } else if (
+        filteredShortMovies.length === 0 &&
+        localStorage.getItem("short-movies")
+      ) {
+        getMoviesToRender(getMoviesFromStorage("short-movies"));
+      } else {
+        setResNotFound(true);
+        setMoviesToRender([]);
+      }
+    }
+    setPreloaderIsVisible(false);
+  };
+
   if (checked) {
-    console.log('hi');
+    console.log("hi");
   }
+
+  React.useEffect(() => {
+    renderMovies();
+  }, [filteredMovies, filteredLongMovies, maxCards, checked]);
+
   function handleCheckClick() {
     setChecked(!checked);
-    handleSearch();
   }
+  const handleAnotherButtonClick = () => {
+    setMaxCards(maxCards + setCountAnotherCards());
+
+    console.log("клик клик");
+  };
+
   return (
     <>
       <Header loggedIn={true} isVisited={true} />
-      <SearchForm onSearch={handleSearch} onCheckClick={handleCheckClick} checked={checked} />
-      <MoviesCardList isInSaveMovies={isInSaveMovies} moviesToRender={moviesToRender} isVisible={preloaderIsVisible} resNotFound={resNotFound} serverError={serverError} />
+      <SearchForm
+        onSearch={handleSearch}
+        onCheckClick={handleCheckClick}
+        checked={checked}
+      />
+      <MoviesCardList
+        isInSaveMovies={isInSaveMovies}
+        moviesToRender={moviesToRender}
+        isVisible={preloaderIsVisible}
+        resNotFound={resNotFound}
+        serverError={serverError}
+        isAnotherButtonVisible={anotherButtonVisible}
+        onAnotherButtonClick={handleAnotherButtonClick}
+      />
       <Footer />
     </>
-  )
+  );
 }
 
 export default Movies;

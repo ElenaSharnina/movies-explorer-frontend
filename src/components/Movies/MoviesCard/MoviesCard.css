@@ -4,7 +4,7 @@
   flex-direction: column;
   position: relative;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
-  align-items: center;
+  justify-content: space-between;
 }
 
 .moviescard__name {
@@ -15,10 +15,12 @@
   padding-top: 14px;
   padding-left: 14px;
   padding-bottom: 9px;
+  width: 80%;
 }
 
 .moviescard__image {
   width: 100%;
+  height: auto;
   aspect-ratio: 364/203;
   object-fit: cover;
 }

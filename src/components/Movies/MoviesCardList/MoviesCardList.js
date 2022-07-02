@@ -27,7 +27,7 @@ function MoviesCardList(props) {
               />)}
             </>)}
       </ul>
-      <button type="button" className={`${props.isInSaveMovies ? "cards__button_hidden" : "cards__button"}`}>Ещё</button>
+      <button type="button" onClick={props.onAnotherButtonClick} className={`${props.isAnotherButtonVisible ? "cards__button" : "cards__button_hidden"}`}>Ещё</button>
     </section>
   )
 }
