@@ -15,11 +15,28 @@ export class Api {
 
   getMovies() {
     return fetch(`${this._url}/movies`, {
-      method: 'GET',
+      method: "GET",
       headers: this._headers,
-    })
-      .then(this._checkResponse)
+    }).then(this._checkResponse);
   }
+
+  saveMovie = (nameRU, image, trailerLink, duration) =>
+    fetch(`${this._url}/movies`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        nameRU,
+        image,
+        trailerLink,
+        duration,
+      }),
+    }).then(this._checkResponse);
+
+  deleteMovieFromSaved = (movieId) =>
+    fetch(`${this._url}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
 }
 
 const api = new Api(apiConfig);

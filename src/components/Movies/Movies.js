@@ -170,7 +170,9 @@ function Movies({ isInSaveMovies }) {
   // меняем рендер
   React.useEffect(() => {
     renderMovies();
-  }, [filteredMovies, filteredLongMovies, maxCards, checked]);
+  }, [filteredMovies, filteredLongMovies, maxCards, checked,]);
+
+
 
   // клик по чекбоксу
   function handleCheckClick() {
