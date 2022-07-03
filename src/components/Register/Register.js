@@ -1,20 +1,55 @@
 import React from "react";
+import { useState } from 'react';
 import LoginRegisterForm from "../LoginRegisterForm/LoginRegisterForm";
 
-function Register() {
+function Register({ onRegister }) {
 
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
+  const [isValidEmail, setValidityEmail] = useState(false);
+  const [errorEmail, setErrorEmail] = useState('');
+  const [isValidName, setValidityName] = useState(false);
+  const [errorName, setErrorName] = useState('');
+  const [isValidPass, setValidityPass] = useState(false);
+  const [errorPass, setErrorPass] = useState('');
+
+  const handleInputEmailChange = (event) => {
+    const input = event.target;
+    setEmail(input.value);
+    setValidityEmail(input.validity.valid);
+    if (!isValidEmail) {
+      setErrorEmail(input.validationMessage);
+    }
+    else {
+      setErrorEmail('');
+    }
   }
-  function handleChangeName(e) {
-    setName(e.target.value);
+  const handleInputNameChange = (event) => {
+    const input = event.target;
+    setName(input.value);
+    setValidityName(input.validity.valid);
+    if (!isValidName) {
+      setErrorName(input.validationMessage);
+    } else {
+      setErrorName('');
+    }
   }
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
+  const handleInputPassChange = (event) => {
+    const input = event.target;
+    setPassword(input.value);
+    setValidityPass(input.validity.valid);
+    if (!isValidPass) {
+      setErrorPass(input.validationMessage);
+    } else {
+      setErrorPass('');
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onRegister({ name, email, password });
   }
 
   return (
@@ -22,6 +57,7 @@ function Register() {
       greetings={"Добро пожаловать!"}
       submitText={"Зарегистрироваться"}
       isInRigister={true}
+      onSubmit={handleSubmit}
       inputs={
         <>
           <label className="register__label" htmlFor="text-input">
@@ -35,10 +71,12 @@ function Register() {
             autoComplete="off"
             minLength="2"
             maxLength="40"
+            pattern="^[a-zA-Zа-яА-ЯЁё -]+$"
             required
             value={name || ""}
-            onChange={handleChangeName}
+            onChange={handleInputNameChange}
           />
+          <span className="error">{errorName}</span>
           <label className="register__label">E-mail</label>
           <input
             autoComplete="off"
@@ -48,8 +86,9 @@ function Register() {
             name="email"
             required
             value={email || ""}
-            onChange={handleChangeEmail}
+            onChange={handleInputEmailChange}
           />
+          <span className="error">{errorEmail}</span>
           <label className="register__label">Пароль</label>
           <input
             className="register__input"
@@ -58,8 +97,8 @@ function Register() {
             minLength="8"
             required
             value={password || ""}
-            onChange={handleChangePassword}
-          />
+            onChange={handleInputPassChange}
+          /><span className="error">{errorPass}</span>
         </>
       }
     />

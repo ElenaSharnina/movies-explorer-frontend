@@ -7,7 +7,7 @@ function InfoTooltip({ isOpen, onClose, isSuccess }) {
     <div
       className={`infoTooltip ${isOpen ? "infoTooltip_active" : ""}`}
     >
-      <div className="infoTooltip__containe">
+      <div className="infoTooltip__container">
         <button
           type="button"
           className="infoTooltip__close-icon"
