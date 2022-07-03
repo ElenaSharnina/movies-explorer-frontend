@@ -21,6 +21,7 @@ function Movies({ isInSaveMovies }) {
   const isPad = useMediaPredicate("(min-width: 551px)");
   const isDexstop = useMediaPredicate("(min-width: 768px)");
 
+  // счетчик фильмов при загрузки
   const setCountInitialCards = () => {
     let i;
     if (isDexstop) {
@@ -33,7 +34,7 @@ function Movies({ isInSaveMovies }) {
     return i;
   };
   const [maxCards, setMaxCards] = React.useState(setCountInitialCards());
-
+  // счетчик фильмов при нажатии на еще
   const setCountAnotherCards = () => {
     let i;
     if (isDexstop) {
@@ -46,7 +47,7 @@ function Movies({ isInSaveMovies }) {
     return i;
   };
 
-
+  // дефолтные стейты
   const setDefaultStates = () => {
     setAnotherButtonVisible(false);
     setMaxCards(setCountInitialCards());
@@ -56,6 +57,7 @@ function Movies({ isInSaveMovies }) {
     localStorage.removeItem("short-movies");
   };
 
+  // получаем фильмы с сервера при загрузки страницы
   React.useEffect(() => {
     if (allMovies.length === 0) {
       getMovies()
@@ -70,7 +72,7 @@ function Movies({ isInSaveMovies }) {
     }
   }, []);
 
-
+  // корректное количество фильмов для рендера
   const getMoviesToRender = (films) => {
     const movies = [];
     for (let i = 0; i < maxCards && i < films.length; i += 1) {
@@ -86,8 +88,7 @@ function Movies({ isInSaveMovies }) {
     }, 300);
   };
 
-
-  //поиск фильмов
+  //сабмит поиска фильмов
   function handleSearch(keyword) {
     setDefaultStates();
     setPreloaderIsVisible(true);
@@ -119,7 +120,6 @@ function Movies({ isInSaveMovies }) {
       setFilteredShortMovies([]);
       setResNotFound(true);
     }
-
     if (filterMovies.length === 0) {
       setFilteredMovies([]);
       setFilteredLongMovies([]);
@@ -132,18 +132,20 @@ function Movies({ isInSaveMovies }) {
   function getMoviesFromStorage(itemName) {
     return JSON.parse(localStorage.getItem(itemName));
   }
+  // логика рендера
   const renderMovies = () => {
     if (!checked) {
       setServerError(false);
       if (filteredMovies.length > 0) {
         getMoviesToRender(filteredMovies);
+        setResNotFound(false);
       } else if (
         filteredMovies.length === 0 &&
         localStorage.getItem("movies")
       ) {
         getMoviesToRender(getMoviesFromStorage("movies"));
       } else {
-        setResNotFound(false);
+        setResNotFound(true);
         setMoviesToRender([]);
       }
     } else {
@@ -154,7 +156,7 @@ function Movies({ isInSaveMovies }) {
         localStorage.getItem("short-movies")
       ) {
         getMoviesToRender(getMoviesFromStorage("short-movies"));
-      } else {
+      } else if (filteredShortMovies.length === 0) {
         setResNotFound(true);
         setMoviesToRender([]);
       }
@@ -165,17 +167,20 @@ function Movies({ isInSaveMovies }) {
   if (checked) {
     console.log("hi");
   }
-
+  // меняем рендер
   React.useEffect(() => {
     renderMovies();
   }, [filteredMovies, filteredLongMovies, maxCards, checked]);
 
+  // клик по чекбоксу
   function handleCheckClick() {
     setChecked(!checked);
+    // setServerError(false);
   }
+
+  // клик по кнопке еще
   const handleAnotherButtonClick = () => {
     setMaxCards(maxCards + setCountAnotherCards());
-
     console.log("клик клик");
   };
 
