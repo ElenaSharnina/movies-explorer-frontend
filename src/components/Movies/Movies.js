@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import getMovies from "../../utils/MoviesApi";
 
-function Movies({ isInSaveMovies }) {
+function Movies(props) {
   const [allMovies, setAllMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [filteredLongMovies, setFilteredLongMovies] = React.useState([]);
@@ -195,13 +195,15 @@ function Movies({ isInSaveMovies }) {
         checked={checked}
       />
       <MoviesCardList
-        isInSaveMovies={isInSaveMovies}
+        isInSaveMovies={props.isInSaveMovies}
         moviesToRender={moviesToRender}
         isVisible={preloaderIsVisible}
         resNotFound={resNotFound}
         serverError={serverError}
         isAnotherButtonVisible={anotherButtonVisible}
         onAnotherButtonClick={handleAnotherButtonClick}
+        savedMovies={props.savedMovies}
+        onSaveMovieClick={props.onSaveMovieClick}
       />
       <Footer />
     </>

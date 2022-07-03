@@ -15,15 +15,16 @@ function MoviesCardList(props) {
         {props.isInSaveMovies ?
           (
             <>
-              {/* //<MoviesCard nameRU={"33 слова о дизайне"} duration={"1ч 47м"} link={Image1} isSaved={false} isInSaveMovies={props.isInSaveMovies} />
-            //   <MoviesCard nameRU={"33 слова о дизайне"} duration={"1ч 47м"} link={Image2} isSaved={false} isInSaveMovies={props.isInSaveMovies} />
-            //   <MoviesCard nameRU={"33 слова о дизайне"} duration={"1ч 47м"} link={Image3} isSaved={true} isInSaveMovies={props.isInSaveMovies} /> */}
-            </>)
+
+            </>
+          )
           :
           (
             <> {props.moviesToRender.map((card) =>
               <MoviesCard card={card}
                 key={card.id}
+                onSaveMovieClick={props.onSaveMovieClick}
+                savedMovies={props.savedMovies}
               />)}
             </>)}
       </ul>

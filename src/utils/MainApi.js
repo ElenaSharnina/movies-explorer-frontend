@@ -20,15 +20,21 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  saveMovie = (nameRU, image, trailerLink, duration) =>
+  saveMovie = (movie
+  ) =>
     fetch(`${this._url}/movies`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        nameRU,
-        image,
-        trailerLink,
-        duration,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `https://api.nomoreparties.co${movie.image.url}`,
+        trailer: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
       }),
     }).then(this._checkResponse);
 

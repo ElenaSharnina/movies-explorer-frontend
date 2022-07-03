@@ -15,35 +15,37 @@ function MoviesCard(props) {
     return `${hours} ч. ${minutes} мин.`;
   };
 
-  function handleSaveClick() {
+  function handleSaveMovieClick() {
     setMovieIsSaved(!movieIsSaved);
-    props.onSaveClick({
+    props.onSaveMovieClick({
       nameRU: props.card.nameRU,
       image: `https://api.nomoreparties.co${props.card.image.url}`,
       trailerLink: props.card.trailerLink,
       duration: props.card.duration,
     });
   }
+
   return (
 
     <li className="moviescard">
-      <a href={props.card.trailerLink} className="moviescard__link" target="_blank"
-        rel="nooperen noreferrer">
-        {props.isInSaveMovies ? (
-          <button type="button" className="moviescard__button_type_delete"></button>
-        ) : (
-          <button
-            type="button"
-            onClick={handleSaveClick}>
-            className={`${props.isSaved
-              ? "moviescard__button moviescard__button_active"
-              : "moviescard__button"
-              }`}
-          </button>
-        )}
-        <div className="moviescard__text-container">
-          <h2 className="moviescard__name">{props.card.nameRU}</h2>
-          <p className="moviescard__duration">{minToHours(props.card.duration)}</p></div>
+
+      {props.isInSaveMovies ? (
+        <button type="button" className="moviescard__button_type_delete"></button>
+      ) : (
+        <button
+          type="button"
+
+          onClick={handleSaveMovieClick}
+          className={`${movieIsSaved
+            ? "moviescard__button moviescard__button_active"
+            : "moviescard__button"
+            }`}
+        ></button>
+      )}
+      <div className="moviescard__text-container">
+        <h2 className="moviescard__name">{props.card.nameRU}</h2>
+        <p className="moviescard__duration">{minToHours(props.card.duration)}</p></div><a href={props.card.trailerLink} className="moviescard__link" target="_blank"
+          rel="nooperen noreferrer">
         <img className="moviescard__image" src={`https://api.nomoreparties.co${props.card.image.url}`} alt={props.card.nameRU} />
       </a>
     </li >
