@@ -1,0 +1,86 @@
+.errorr {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  transition: all 0.7s ease;
+  opacity: 0;
+}
+
+.error_active {
+  visibility: visible;
+  display: flex;
+  opacity: 0.8;
+}
+
+.error__image {
+  width: 40px;
+  height: 40px;
+  align-self: center;
+}
+
+.error__close-icon {
+  background-image: url(../../images/closeIcon.svg);
+  background-size: cover;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background-color: transparent;
+}
+.error__close-icon:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.error__text {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+  color: #000000;
+}
+
+.error__container {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding-top: 60px;
+  width: 430px;
+  min-height: 150px;
+  border-radius: 10px;
+  padding: 30px 20px 20px 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .error__container {
+    margin: auto 19px;
+    padding: 25px 22px 25px 22px;
+  }
+  .error__close-icon {
+    width: 20px;
+    height: 20px;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .error__text {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+  }
+}

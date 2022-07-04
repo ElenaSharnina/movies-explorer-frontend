@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Header from "../Header/Header";
 
+
 function Profile({ onExit, onSubmit }) {
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -104,6 +105,7 @@ function Profile({ onExit, onSubmit }) {
           </NavLink>
         </div>
       </section>
+
     </>
   );
 }

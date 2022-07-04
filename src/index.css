@@ -31,3 +31,5 @@
 @import url(../src/components/PageNotFound/PageNotFound.css);
 
 @import url(../src/components/InfoTooltip/InfoTooltip.css);
+
+@import url(../src/components/ErrorPopup/ErrorPopup.css);

@@ -12,11 +12,14 @@ import api from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 function App() {
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
+  const [isErrorOpen, setIsErrorOpen] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(null);
+  // const [isSuccessProfile, setIsSuccessProfile] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
@@ -71,9 +74,11 @@ function App() {
         setEmail(data.email);
         setUserName(data.name);
         console.log(data);
+
       })
       .catch((err) => {
         console.log(err);
+
       });
   }, []);
 
@@ -111,6 +116,10 @@ function App() {
       navigate("/movies");
     }
   }
+
+  function closeError() {
+    setIsErrorOpen(false);
+  }
   // function handleLoggedIn() {
   //   setLoggedIn(true);
   // }
@@ -126,9 +135,13 @@ function App() {
         setEmail(data.email);
         setUserName(data.name);
         console.log(data);
+        setIsSuccess(true);
+        setIsErrorOpen(true);
       })
       .catch((err) => {
         console.log(err);
+        setIsSuccess(false);
+        setIsErrorOpen(true);
       });
   }
 
@@ -186,6 +199,9 @@ function App() {
           onClose={closeInfoTooltip}
           isSuccess={isSuccess}
         />
+        <ErrorPopup isOpen={isErrorOpen}
+          onClose={closeError}
+          isSuccess={isSuccess} />
       </CurrentUserContext.Provider>
     </main>
   );
