@@ -1,16 +1,41 @@
 import React from "react";
 import LoginRegisterForm from "../LoginRegisterForm/LoginRegisterForm";
+import { useState } from 'react';
 
-function Login() {
+function Login({ onLogin }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
+  const [isValidEmail, setValidityEmail] = useState(false);
+  const [errorEmail, setErrorEmail] = useState('');
+  const [isValidPass, setValidityPass] = useState(false);
+  const [errorPass, setErrorPass] = useState('');
+
+  const handleInputEmailChange = (event) => {
+    const input = event.target;
+    setEmail(input.value);
+    setValidityEmail(input.validity.valid);
+    if (!isValidEmail) {
+      setErrorEmail(input.validationMessage);
+    }
+    else {
+      setErrorEmail('');
+    }
+  }
+  const handleInputPassChange = (event) => {
+    const input = event.target;
+    setPassword(input.value);
+    setValidityPass(input.validity.valid);
+    if (!isValidPass) {
+      setErrorPass(input.validationMessage);
+    } else {
+      setErrorPass('');
+    }
   }
 
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
+  function handleSubmit(e) {
+    e.preventDefault();
+    onLogin({ email, password });
   }
 
   return (
@@ -18,6 +43,8 @@ function Login() {
       greetings={"Рады видеть!"}
       submitText={"Войти"}
       isInRigister={false}
+      onSubmit={handleSubmit}
+      isValid={isValidEmail && isValidPass}
       inputs={
         <>
           <label className="login__label">E-mail</label>
@@ -29,8 +56,9 @@ function Login() {
             name="email"
             required
             value={email || ""}
-            onChange={handleChangeEmail}
+            onChange={handleInputEmailChange}
           />
+          <span className="error">{errorEmail}</span>
           <label className="login__label">Пароль</label>
           <input
             className="login__input"
@@ -39,8 +67,9 @@ function Login() {
             minLength="8"
             required
             value={password || ""}
-            onChange={handleChangePassword}
+            onChange={handleInputPassChange}
           />
+          <span className="error">{errorPass}</span>
         </>
       }
     />

@@ -58,6 +58,7 @@ function Register({ onRegister }) {
       submitText={"Зарегистрироваться"}
       isInRigister={true}
       onSubmit={handleSubmit}
+      isValid={isValidEmail && isValidName && isValidPass}
       inputs={
         <>
           <label className="register__label" htmlFor="text-input">

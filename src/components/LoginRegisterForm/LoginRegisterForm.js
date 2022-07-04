@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../images/logo.svg";
 
-function LoginRegisterForm({ greetings, submitText, inputs, isInRigister, onSubmit }) {
+function LoginRegisterForm({ greetings, submitText, inputs, isInRigister, onSubmit, isValid }) {
   return (
     <section className="login-register">
       <NavLink to="/">
@@ -12,7 +12,7 @@ function LoginRegisterForm({ greetings, submitText, inputs, isInRigister, onSubm
       <h3 className="login-register__greetings">{greetings}</h3>
       <form className="login-register__form" onSubmit={onSubmit}>
         <div className="login-register__fields">{inputs}</div>
-        <button type="submit" className="login-register__button">
+        <button type="submit" className="login-register__button" disabled={!isValid}>
           {submitText}
         </button>
       </form>

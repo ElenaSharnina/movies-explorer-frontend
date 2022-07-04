@@ -69,6 +69,10 @@
   color: #12bb61;
 }
 
+.login-register__button:disabled {
+  background-color: #868d89;
+  cursor: default;
+}
 @media screen and (max-width: 768px) {
   .login-register {
     min-height: 560px;

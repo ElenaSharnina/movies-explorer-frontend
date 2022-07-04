@@ -20,6 +20,7 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [loggedIn, setLoggedIn] = React.useState(false);
   let navigate = useNavigate();
 
 
@@ -29,6 +30,20 @@ function App() {
       if (res.data) {
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
+      } else {
+        setIsSuccess(false);
+        setIsInfoTooltipOpen(true);
+      }
+    });
+  }
+
+
+  function handleLogin({ email, password }) {
+    auth.authorize(email, password).then((res) => {
+      console.log(res);
+      if (res) {
+        setLoggedIn(true);
+        navigate("/movies");
       } else {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
@@ -84,7 +99,7 @@ function App() {
   function closeInfoTooltip() {
     setIsInfoTooltipOpen(false);
     if (isSuccess) {
-      navigate("/signin");
+      navigate("/movies");
     }
   }
 
@@ -102,7 +117,7 @@ function App() {
               <Profile username={"Виталий"} useremail={"pochta@yandex.ru"} />
             }
           />
-          <Route path="/signin" element={<Login />} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route path="/signup" element={<Register onRegister={handleRegister} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
