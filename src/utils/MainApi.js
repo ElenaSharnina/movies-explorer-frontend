@@ -45,20 +45,19 @@ export class Api {
     }).then(this._checkResponse);
 
   getUserInfo() {
-    return fetch(`${this._address}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers,
-
     })
       .then(this._checkResponse)
   }
-  changeUserInfo(user) {
-    return fetch(`${this._address}/users/me`, {
+  changeUserInfo(name, email) {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: user.name,
-        email: user.email
+        name,
+        email
       })
 
     }).then(this._checkResponse)

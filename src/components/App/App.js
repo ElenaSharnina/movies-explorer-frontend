@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useNavigate, } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -27,8 +27,6 @@ function App() {
     auth.register(name, email, password).then((res) => {
       console.log(res);
       if (res.data) {
-        setEmail(email);
-        setUserName(name);
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
       } else {
@@ -56,7 +54,6 @@ function App() {
     if (token) {
       auth.checkToken(token).then((data) => {
         if (data) {
-          setEmail(data.email);
           setLoggedIn(true);
           navigate("/movies");
         } else {
@@ -65,11 +62,14 @@ function App() {
       });
     }
   }, [loggedIn]);
+
   React.useEffect(() => {
     api
       .getUserInfo()
       .then((data) => {
         setCurrentUser(data);
+        setEmail(data.email);
+        setUserName(data.name);
         console.log(data);
       })
       .catch((err) => {
@@ -119,6 +119,18 @@ function App() {
     setLoggedIn(false);
     navigate("/");
   }
+  function handleChangeUserInfo({ name, email }) {
+    api.changeUserInfo(name, email)
+      .then((data) => {
+        setCurrentUser(data);
+        setEmail(data.email);
+        setUserName(data.name);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <main className="page">
@@ -126,7 +138,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           {/* {handleLoggedIn ? navigate("/movies") : navigate("/")} */}
-          <Route path="/movies" element={<ProtectedRoute loggedIn={loggedIn} />}>
+          <Route
+            path="/movies"
+            element={<ProtectedRoute loggedIn={loggedIn} />}
+          >
             <Route
               path="/movies"
               element={
@@ -137,13 +152,25 @@ function App() {
               }
             />
           </Route>
-          <Route path="/saved-movies" element={<ProtectedRoute loggedIn={loggedIn} />}>
-            <Route path="/saved-movies" element={<SavedMovies />} /></Route>
-          <Route path="/profile" element={<ProtectedRoute loggedIn={loggedIn} />}>
+          <Route
+            path="/saved-movies"
+            element={<ProtectedRoute loggedIn={loggedIn} />}
+          >
+            <Route path="/saved-movies" element={<SavedMovies />} />
+          </Route>
+          <Route
+            path="/profile"
+            element={<ProtectedRoute loggedIn={loggedIn} />}
+          >
             <Route
               path="/profile"
               element={
-                <Profile username={userName} useremail={email} onExit={handleExit} />
+                <Profile
+                  username={userName}
+                  useremail={email}
+                  onExit={handleExit}
+                  onSubmit={handleChangeUserInfo}
+                />
               }
             />
           </Route>

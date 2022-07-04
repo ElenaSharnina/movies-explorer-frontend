@@ -1,25 +1,60 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Header from "../Header/Header";
 
-function Profile({ username, useremail, onExit }) {
+function Profile({ onExit, onSubmit }) {
+
+  const currentUser = React.useContext(CurrentUserContext);
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
+  const [isValidEmail, setValidityEmail] = React.useState(false);
+  const [errorEmail, setErrorEmail] = React.useState('');
+  const [isValidName, setValidityName] = React.useState(false);
+  const [errorName, setErrorName] = React.useState('');
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
+  const handleInputEmailChange = (event) => {
+    const input = event.target;
+    setEmail(input.value);
+    setValidityEmail(input.validity.valid);
+    if (!isValidEmail) {
+      setErrorEmail(input.validationMessage);
+    }
+    else {
+      setErrorEmail('');
+    }
   }
-  function handleChangeName(e) {
-    setName(e.target.value);
+  const handleInputNameChange = (event) => {
+    const input = event.target;
+    setName(input.value);
+    setValidityName(input.validity.valid);
+    if (!isValidName) {
+      setErrorName(input.validationMessage);
+    } else {
+      setErrorName('');
+    }
   }
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
 
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onSubmit({
+      name,
+      email,
+    });
+  }
   return (
     <>
       <Header loggedIn={true} />
       <section className="profile page__container">
         <div className="profile__container">
-          <h3 className="profile__greetings">Привет, {username}!</h3>
-          <form className="profile__form">
+          <h3 className="profile__greetings">Привет, {name}!</h3>
+          <form className="profile__form" onSubmit={handleSubmit}>
             <div className="profile__item">
               <label className="profile__lable">Имя</label>
               <input
@@ -30,10 +65,12 @@ function Profile({ username, useremail, onExit }) {
                 minLength="2"
                 maxLength="40"
                 required
-                value={name || username}
-                onChange={handleChangeName}
+                value={name || ''}
+                onChange={handleInputNameChange}
               />
+              <span className="error error_place_profile">{errorName}</span>
             </div>
+
             <div className="profile__item">
               <label className="profile__lable">E-mail</label>
               <input
@@ -41,14 +78,15 @@ function Profile({ username, useremail, onExit }) {
                 type="email"
                 name="email"
                 autoComplete="off"
-                minLength="2"
-                maxLength="40"
                 required
-                value={email || useremail}
-                onChange={handleChangeEmail}
+                value={email || ''}
+                onChange={handleInputEmailChange}
               />
+              <span className="error error_place_profile">{errorEmail}</span>
             </div>
+
             <button
+              disabled={!isValidEmail && !isValidName}
               type="submit"
               className="profile__button profile__button_type_edit"
             >
