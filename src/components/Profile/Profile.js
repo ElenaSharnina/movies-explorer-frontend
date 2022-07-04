@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Header from "../Header/Header";
 
-function Profile({ username, useremail }) {
+function Profile({ username, useremail, onExit }) {
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
 
@@ -57,6 +57,7 @@ function Profile({ username, useremail }) {
           </form>
           <NavLink to="/">
             <button
+              onClick={onExit}
               type="button"
               className="profile__button profile__button_type_exit"
             >

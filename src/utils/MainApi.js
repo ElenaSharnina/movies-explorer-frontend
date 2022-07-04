@@ -43,6 +43,26 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
+
+  getUserInfo() {
+    return fetch(`${this._address}/users/me`, {
+      method: 'GET',
+      headers: this._headers,
+
+    })
+      .then(this._checkResponse)
+  }
+  changeUserInfo(user) {
+    return fetch(`${this._address}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: user.name,
+        email: user.email
+      })
+
+    }).then(this._checkResponse)
+  }
 }
 
 const api = new Api(apiConfig);

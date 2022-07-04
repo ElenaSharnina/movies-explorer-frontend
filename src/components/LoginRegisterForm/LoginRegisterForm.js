@@ -1,4 +1,4 @@
-import { PROPERTY_TYPES } from "@babel/types";
+
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../images/logo.svg";
