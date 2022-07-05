@@ -36,23 +36,18 @@ function MoviesCard(props) {
       setMovieIsSaved(true);
     }
   }, []);
+
   return (
 
     <li className="moviescard">
-
-      {props.isInSaveMovies ? (
-        <button type="button" className="moviescard__button_type_delete"></button>
-      ) : (
-        <button
-          type="button"
-
-          onClick={handleSaveMovieClick}
-          className={`${movieIsSaved
-            ? "moviescard__button moviescard__button_active"
-            : "moviescard__button"
-            }`}
-        ></button>
-      )}
+      <button
+        type="button"
+        onClick={handleSaveMovieClick}
+        className={`${movieIsSaved
+          ? "moviescard__button moviescard__button_active"
+          : "moviescard__button"
+          }`}
+      ></button>
       <div className="moviescard__text-container">
         <h2 className="moviescard__name">{props.card.nameRU}</h2>
         <p className="moviescard__duration">{minToHours(props.card.duration)}</p></div><a href={props.card.trailerLink} className="moviescard__link" target="_blank"

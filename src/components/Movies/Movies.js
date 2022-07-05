@@ -195,7 +195,6 @@ function Movies(props) {
         checked={checked}
       />
       <MoviesCardList
-        isInSaveMovies={props.isInSaveMovies}
         moviesToRender={moviesToRender}
         isVisible={preloaderIsVisible}
         resNotFound={resNotFound}

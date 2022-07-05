@@ -95,6 +95,21 @@ function App() {
     }
   }, [loggedIn]);
 
+  // Получаем сохраненные фильмы
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      api.getMovies()
+        .then((movies) => {
+          setSavedMovies(movies.movies);
+          console.log(movies);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn])
+
   // сохранение-удаление фильма
   const handleMovieSaveOrDelete = ({ country,
     director,
@@ -212,7 +227,10 @@ function App() {
             path="/saved-movies"
             element={<ProtectedRoute loggedIn={loggedIn} />}
           >
-            <Route path="/saved-movies" element={<SavedMovies />} />
+            <Route path="/saved-movies" element={<SavedMovies
+              setSavedMovies={setSavedMovies}
+              onMovieDelete={handleMovieDelete}
+              savedMovies={savedMovies} />} />
           </Route>
           <Route
             path="/profile"
