@@ -19,19 +19,28 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [isErrorOpen, setIsErrorOpen] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(null);
-  // const [isSuccessProfile, setIsSuccessProfile] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [userName, setUserName] = React.useState("");
   let navigate = useNavigate();
 
+  // регистрация
   function handleRegister({ name, email, password }) {
     auth.register(name, email, password).then((res) => {
       console.log(res);
       if (res.data) {
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
+        auth.authorize(email, password).then((res) => {
+          console.log(res);
+          if (res) {
+            setLoggedIn(true);
+          } else {
+            setIsSuccess(false);
+            setIsInfoTooltipOpen(true);
+          }
+        })
       } else {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
@@ -39,6 +48,7 @@ function App() {
     });
   }
 
+  // авторизация
   function handleLogin({ email, password }) {
     auth.authorize(email, password).then((res) => {
       console.log(res);
@@ -52,6 +62,7 @@ function App() {
     });
   }
 
+  // проверка токена для быстрого входа длля авторизованных пользователей
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -66,39 +77,66 @@ function App() {
     }
   }, [loggedIn]);
 
+  // получаем данные о пользователе
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-        setEmail(data.email);
-        setUserName(data.name);
-        console.log(data);
+    const token = localStorage.getItem("token");
+    if (token) {
+      api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+          setEmail(data.email);
+          setUserName(data.name);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
 
-      })
-      .catch((err) => {
-        console.log(err);
-
-      });
-  }, []);
-
-  const handleMovieSaveOrDelete = (movie) => {
-    const isSaved = savedMovies.some((i) => i.nameRU === movie.nameRU);
+  // сохранение-удаление фильма
+  const handleMovieSaveOrDelete = ({ country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN,
+    owner, }) => {
+    const isSaved = savedMovies.some((i) => i.nameRU === nameRU);
     if (!isSaved) {
       api
-        .saveMovie(movie)
+        .saveMovie(country,
+          director,
+          duration,
+          year,
+          description,
+          image,
+          trailerLink,
+          thumbnail,
+          movieId,
+          nameRU,
+          nameEN,
+          owner)
         .then((savedMovie) => {
           setSavedMovies([savedMovie, ...savedMovies]);
+          console.log(savedMovie);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      const cardToDelete = savedMovies.find((i) => i.nameRU === movie.nameRU);
+      const cardToDelete = savedMovies.find((i) => i.nameRU === nameRU);
       handleMovieDelete(cardToDelete._id);
     }
   };
 
+  // удаление фильма
   const handleMovieDelete = (movieId) => {
     api
       .deleteMovieFromSaved(movieId)
@@ -110,6 +148,7 @@ function App() {
       });
   };
 
+  // закрытия информационного окошка после успешного логина или регистрации
   function closeInfoTooltip() {
     setIsInfoTooltipOpen(false);
     if (isSuccess) {
@@ -117,17 +156,21 @@ function App() {
     }
   }
 
+  // закрытие информационного окошка редвктирования профиля
   function closeError() {
     setIsErrorOpen(false);
   }
   // function handleLoggedIn() {
   //   setLoggedIn(true);
   // }
+
+  // выход из аккаунта
   function handleExit() {
     localStorage.removeItem("token");
     setLoggedIn(false);
     navigate("/");
   }
+  // изменение данных профиля
   function handleChangeUserInfo({ name, email }) {
     api.changeUserInfo(name, email)
       .then((data) => {

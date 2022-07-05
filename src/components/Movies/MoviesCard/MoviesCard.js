@@ -22,9 +22,20 @@ function MoviesCard(props) {
       image: `https://api.nomoreparties.co${props.card.image.url}`,
       trailerLink: props.card.trailerLink,
       duration: props.card.duration,
+      country: props.card.country || 'null',
+      director: props.card.director || 'null',
+      year: props.card.year,
+      description: props.card.description,
+      thumbnail: `https://api.nomoreparties.co${props.card.image.formats.thumbnail.url}`,
+      movieId: props.card.id.toString(),
+      nameEN: props.card.nameEN || 'null',
     });
   }
-
+  React.useEffect(() => {
+    if (props.savedMovies.some((i) => i.nameRU === props.card.nameRU)) {
+      setMovieIsSaved(true);
+    }
+  }, []);
   return (
 
     <li className="moviescard">

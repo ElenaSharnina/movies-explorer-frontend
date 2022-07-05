@@ -20,21 +20,35 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  saveMovie = (movie
+  saveMovie = (country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN,
+    owner,
   ) =>
     fetch(`${this._url}/movies`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        country: movie.country,
-        director: movie.director,
-        duration: movie.duration,
-        year: movie.year,
-        description: movie.description,
-        image: `https://api.nomoreparties.co${movie.image.url}`,
-        trailer: movie.trailerLink,
-        nameRU: movie.nameRU,
-        nameEN: movie.nameEN,
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink,
+        thumbnail,
+        movieId,
+        nameRU,
+        nameEN,
+        owner,
       }),
     }).then(this._checkResponse);
 
