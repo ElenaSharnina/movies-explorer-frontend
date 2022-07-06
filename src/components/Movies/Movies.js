@@ -8,6 +8,7 @@ import getMovies from "../../utils/MoviesApi";
 
 function Movies(props) {
   const [allMovies, setAllMovies] = React.useState([]);
+  const [longMovies, setLongMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [filteredLongMovies, setFilteredLongMovies] = React.useState([]);
   const [filteredShortMovies, setFilteredShortMovies] = React.useState([]);
@@ -17,6 +18,7 @@ function Movies(props) {
   const [resNotFound, setResNotFound] = React.useState(false);
   const [serverError, setServerError] = React.useState(false);
   const [anotherButtonVisible, setAnotherButtonVisible] = React.useState(false);
+  // const [somethingWasSearched, setSomethingWasSearched] = React.useState(false);
   const isMobile = useMediaPredicate("(max-width: 550px)");
   const isPad = useMediaPredicate("(min-width: 551px)");
   const isDexstop = useMediaPredicate("(min-width: 768px)");
@@ -50,11 +52,13 @@ function Movies(props) {
   // дефолтные стейты
   const setDefaultStates = () => {
     setAnotherButtonVisible(false);
+    setResNotFound(false);
     setMaxCards(setCountInitialCards());
     setMoviesToRender([]);
     localStorage.removeItem("movies");
     localStorage.removeItem("long-movies");
     localStorage.removeItem("short-movies");
+
   };
 
   // получаем фильмы с сервера при загрузки страницы
@@ -63,6 +67,9 @@ function Movies(props) {
       getMovies()
         .then((movies) => {
           setAllMovies(movies);
+          setLongMovies(movies.filter(
+            (item) => item.duration > 40,
+          ));
           console.log(movies);
         })
         .catch((err) => {
@@ -145,7 +152,7 @@ function Movies(props) {
       ) {
         getMoviesToRender(getMoviesFromStorage("movies"));
       } else {
-        setResNotFound(true);
+        setResNotFound(false);
         setMoviesToRender([]);
       }
     } else {
@@ -170,9 +177,8 @@ function Movies(props) {
   // меняем рендер
   React.useEffect(() => {
     renderMovies();
+    localStorage.removeItem("keyword");
   }, [filteredMovies, filteredLongMovies, maxCards, checked,]);
-
-
 
   // клик по чекбоксу
   function handleCheckClick() {

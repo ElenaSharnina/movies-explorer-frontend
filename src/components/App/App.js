@@ -82,7 +82,7 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) {
       api
-        .getUserInfo()
+        .getUserInfo(token)
         .then((data) => {
           setCurrentUser(data);
           setEmail(data.email);
@@ -99,7 +99,7 @@ function App() {
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      api.getMovies()
+      api.getMovies(token)
         .then((movies) => {
           setSavedMovies(movies.movies);
           console.log(movies);
@@ -122,7 +122,7 @@ function App() {
     movieId,
     nameRU,
     nameEN,
-    owner, }) => {
+  }) => {
     const isSaved = savedMovies.some((i) => i.nameRU === nameRU);
     if (!isSaved) {
       api
@@ -137,7 +137,7 @@ function App() {
           movieId,
           nameRU,
           nameEN,
-          owner)
+        )
         .then((savedMovie) => {
           setSavedMovies([savedMovie, ...savedMovies]);
           console.log(savedMovie);
@@ -182,6 +182,10 @@ function App() {
   // выход из аккаунта
   function handleExit() {
     localStorage.removeItem("token");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("long-movies");
+    localStorage.removeItem("short-movies");
+    localStorage.removeItem("keyword");
     setLoggedIn(false);
     navigate("/");
   }

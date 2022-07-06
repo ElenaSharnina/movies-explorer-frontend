@@ -13,10 +13,13 @@ export class Api {
     return Promise.reject(`${res.status}`);
   }
 
-  getMovies() {
+  getMovies(token) {
     return fetch(`${this._url}/movies`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     }).then(this._checkResponse);
   }
 
@@ -31,7 +34,6 @@ export class Api {
     movieId,
     nameRU,
     nameEN,
-    owner,
   ) =>
     fetch(`${this._url}/movies`, {
       method: "POST",
@@ -48,7 +50,6 @@ export class Api {
         movieId,
         nameRU,
         nameEN,
-        owner,
       }),
     }).then(this._checkResponse);
 
@@ -58,10 +59,13 @@ export class Api {
       headers: this._headers,
     }).then(this._checkResponse);
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
   }

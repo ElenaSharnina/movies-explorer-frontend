@@ -11,8 +11,7 @@ function SavedMovies(props) {
   const [resNotFound, setResNotFound] = React.useState(false);
   const [somethingWasSearched, setSomethingWasSearched] = React.useState(false);
   const [serverError, setServerError] = React.useState(false);
-  const [checked, setChecked] = React.useState(true);
-
+  const [checked, setChecked] = React.useState(false);
 
   // Фильтр по ключевому слову
   const filterMoviesByKeyword = (keyword) => props.savedMovies.filter(
@@ -21,11 +20,11 @@ function SavedMovies(props) {
 
   // Фильтр по длительности
   const filterMoviesByDuration = (films) => films.filter(
-    (item) => item.duration > 40,
+    (item) => item.duration < 40,
   );
 
   // Сабмит формы поиска
-  const handleSearch = ({ keyword }) => {
+  const handleSearch = (keyword) => {
     localStorage.setItem('keyword', keyword);
     setSomethingWasSearched(true);
     setFilteredMovies(filterMoviesByKeyword(keyword));
@@ -35,17 +34,20 @@ function SavedMovies(props) {
   // Получение фильмов для рендера
   const getMoviesToRender = () => {
     setServerError(false);
-    if (checked) {
+    if (!checked) {
       if (props.savedMovies.length === 0) {
         setMoviesToRender([]);
         setServerError(false);
+        setResNotFound(true);
       } else if (!somethingWasSearched) {
         setMoviesToRender(props.savedMovies);
+        setResNotFound(false);
       } else if (somethingWasSearched) {
         const keyword = localStorage.getItem('keyword');
-        const filMovies = filterMoviesByKeyword(keyword);
-        if (filMovies.length > 0) {
-          setMoviesToRender(filMovies);
+        const filterMovies = filterMoviesByKeyword(keyword);
+        if (filterMovies.length > 0) {
+          setMoviesToRender(filterMovies);
+          setResNotFound(false);
         } else {
           setMoviesToRender([]);
           setResNotFound(true);
@@ -55,18 +57,19 @@ function SavedMovies(props) {
       if (props.savedMovies.length === 0) {
         setMoviesToRender([]);
         setServerError(false);
+        setResNotFound(true);
       } else if (!somethingWasSearched) {
-        const long = props.savedMovies.filter(
-          (item) => item.duration > 40,
+        const longMovies = props.savedMovies.filter(
+          (item) => item.duration < 40,
         );
-        setMoviesToRender(long);
+        setMoviesToRender(longMovies);
       } else if (somethingWasSearched) {
         const keyword = localStorage.getItem('keyword');
-        const filMovies = filterMoviesByKeyword(keyword);
-        if (filMovies.length > 0) {
-          const filLongMovies = filterMoviesByDuration(filMovies);
-          if (filLongMovies.length > 0) {
-            setMoviesToRender(filLongMovies);
+        const filterMovies = filterMoviesByKeyword(keyword);
+        if (filterMovies.length > 0) {
+          const filterShortMovies = filterMoviesByDuration(filterMovies);
+          if (filterShortMovies.length > 0) {
+            setMoviesToRender(filterShortMovies);
           } else {
             setMoviesToRender([]);
             setResNotFound(true);
@@ -83,12 +86,14 @@ function SavedMovies(props) {
   React.useEffect(() => {
     setTimeout(() => {
       getMoviesToRender();
+      localStorage.removeItem("keyword");
     }, 500);
   }, [somethingWasSearched, filteredMovies, props.savedMovies, checked]);
 
   // Клик по чекбоксу 'Короткометражки'
   const handleCheckClick = () => {
     setChecked(!checked);
+    console.log('чек чекбокс')
   };
 
   return (

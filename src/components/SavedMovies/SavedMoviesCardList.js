@@ -1,7 +1,6 @@
 import React from "react";
 import SavedMoviesCard from "./SavedMoviesCard";
 
-
 function SavedMoviesCardList(props) {
   return (
     <section className="cards page__container">
