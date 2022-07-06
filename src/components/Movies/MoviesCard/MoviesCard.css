@@ -46,6 +46,9 @@
   border: none;
   background-color: inherit;
   background-image: url(../../../images/toSaveIcon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   width: 30px;
   height: 30px;
   position: absolute;
@@ -72,6 +75,9 @@
   right: 14px;
   transition: 0.3s ease all;
   background-image: url(../../../images/delete.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 .moviescard__button_type_delete:hover {
   transition: 0.3s ease all;

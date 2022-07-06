@@ -16,7 +16,7 @@
 .infoTooltip_active {
   visibility: visible;
   display: flex;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .infoTooltip__image {
@@ -27,7 +27,9 @@
 
 .infoTooltip__close-icon {
   background-image: url(../../images/closeIcon.svg);
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   position: absolute;
   top: -39px;
   right: -41px;
