@@ -98,12 +98,12 @@
     padding-bottom: 80px;
   }
   .login-register {
-    height: 88vh;
+    height: 80vh;
     margin-top: 56px;
     min-height: 400px;
   }
   .login-register__form {
-    height: 65vh;
+    height: 50vh;
     min-height: 200px;
   }
   .login-register__button,

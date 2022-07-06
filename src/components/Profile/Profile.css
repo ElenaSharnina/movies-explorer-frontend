@@ -128,8 +128,5 @@
   .profile__container {
     height: 90vh;
   }
-  .profile__item:nth-child(2) {
-    padding-bottom: 40vh;
-  }
-
+  
 }
