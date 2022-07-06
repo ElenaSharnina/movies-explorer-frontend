@@ -43,7 +43,6 @@ function Profile({ onExit, onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     onSubmit({
       name,
       email,

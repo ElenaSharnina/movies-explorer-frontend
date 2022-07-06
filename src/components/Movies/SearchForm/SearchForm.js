@@ -3,11 +3,11 @@ import Lupa from "../../../images/searchLupa.svg";
 import { useState } from 'react';
 
 function SearchForm({ onSearch, onCheckClick, checked }) {
-  //валидация 
   const [value, setValue] = useState('');
   const [isValid, setValidity] = useState(false);
   const [error, setError] = useState('');
 
+  //валидация 
   const handleInput1Change = (evt) => {
     const input = evt.target;
     setValue(input.value);
@@ -22,12 +22,12 @@ function SearchForm({ onSearch, onCheckClick, checked }) {
       setError('');
     }
   }
-
+  // сабмит формы
   const handleSubmit = (evt) => {
     evt.preventDefault();
     onSearch(value);
   }
-
+  // измениение чекбокса
   const handleChange = () => {
     onCheckClick(value);
   }

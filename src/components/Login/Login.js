@@ -1,27 +1,26 @@
 import React from "react";
 import LoginRegisterForm from "../LoginRegisterForm/LoginRegisterForm";
-import { useState } from 'react';
+import { useState } from "react";
 
 function Login({ onLogin }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-
   const [isValidEmail, setValidityEmail] = useState(false);
-  const [errorEmail, setErrorEmail] = useState('');
+  const [errorEmail, setErrorEmail] = useState("");
   const [isValidPass, setValidityPass] = useState(false);
-  const [errorPass, setErrorPass] = useState('');
+  const [errorPass, setErrorPass] = useState("");
 
+  // валидация
   const handleInputEmailChange = (event) => {
     const input = event.target;
     setEmail(input.value);
     setValidityEmail(input.validity.valid);
     if (!isValidEmail) {
       setErrorEmail(input.validationMessage);
+    } else {
+      setErrorEmail("");
     }
-    else {
-      setErrorEmail('');
-    }
-  }
+  };
   const handleInputPassChange = (event) => {
     const input = event.target;
     setPassword(input.value);
@@ -29,10 +28,10 @@ function Login({ onLogin }) {
     if (!isValidPass) {
       setErrorPass(input.validationMessage);
     } else {
-      setErrorPass('');
+      setErrorPass("");
     }
-  }
-
+  };
+  // сабмит формы входа
   function handleSubmit(e) {
     e.preventDefault();
     onLogin({ email, password });

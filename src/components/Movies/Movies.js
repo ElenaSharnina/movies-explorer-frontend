@@ -5,10 +5,10 @@ import SearchForm from "./SearchForm/SearchForm";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import getMovies from "../../utils/MoviesApi";
+import { useNavigate } from "react-router-dom";
 
-function Movies(props) {
+function Movies({ savedMovies, onSaveMovieClick }) {
   const [allMovies, setAllMovies] = React.useState([]);
-  const [longMovies, setLongMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [filteredLongMovies, setFilteredLongMovies] = React.useState([]);
   const [filteredShortMovies, setFilteredShortMovies] = React.useState([]);
@@ -19,6 +19,7 @@ function Movies(props) {
   const [serverError, setServerError] = React.useState(false);
   const [anotherButtonVisible, setAnotherButtonVisible] = React.useState(false);
   // const [somethingWasSearched, setSomethingWasSearched] = React.useState(false);
+  let navigate = useNavigate();
   const isMobile = useMediaPredicate("(max-width: 550px)");
   const isPad = useMediaPredicate("(min-width: 551px)");
   const isDexstop = useMediaPredicate("(min-width: 768px)");
@@ -49,7 +50,7 @@ function Movies(props) {
     return i;
   };
 
-  // дефолтные стейты
+  // подчищающие стейты
   const setDefaultStates = () => {
     setAnotherButtonVisible(false);
     setResNotFound(false);
@@ -58,7 +59,6 @@ function Movies(props) {
     localStorage.removeItem("movies");
     localStorage.removeItem("long-movies");
     localStorage.removeItem("short-movies");
-
   };
 
   // получаем фильмы с сервера при загрузки страницы
@@ -67,9 +67,6 @@ function Movies(props) {
       getMovies()
         .then((movies) => {
           setAllMovies(movies);
-          setLongMovies(movies.filter(
-            (item) => item.duration > 40,
-          ));
           console.log(movies);
         })
         .catch((err) => {
@@ -136,6 +133,7 @@ function Movies(props) {
       }, 300);
     }
   }
+  // парсинг из сториджа
   function getMoviesFromStorage(itemName) {
     return JSON.parse(localStorage.getItem(itemName));
   }
@@ -178,7 +176,7 @@ function Movies(props) {
   React.useEffect(() => {
     renderMovies();
     localStorage.removeItem("keyword");
-  }, [filteredMovies, filteredLongMovies, maxCards, checked,]);
+  }, [filteredMovies, filteredLongMovies, maxCards, checked, navigate]);
 
   // клик по чекбоксу
   function handleCheckClick() {
@@ -207,8 +205,8 @@ function Movies(props) {
         serverError={serverError}
         isAnotherButtonVisible={anotherButtonVisible}
         onAnotherButtonClick={handleAnotherButtonClick}
-        savedMovies={props.savedMovies}
-        onSaveMovieClick={props.onSaveMovieClick}
+        savedMovies={savedMovies}
+        onSaveMovieClick={onSaveMovieClick}
       />
       <Footer />
     </>

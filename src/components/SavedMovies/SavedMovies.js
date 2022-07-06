@@ -4,8 +4,7 @@ import SavedMoviesCardList from "./SavedMoviesCardList";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
-function SavedMovies(props) {
-
+function SavedMovies({ savedMovies, onMovieDelete }) {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [moviesToRender, setMoviesToRender] = React.useState([]);
   const [resNotFound, setResNotFound] = React.useState(false);
@@ -13,37 +12,35 @@ function SavedMovies(props) {
   const [serverError, setServerError] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
 
-  // Фильтр по ключевому слову
-  const filterMoviesByKeyword = (keyword) => props.savedMovies.filter(
-    (item) => item.nameRU.toLowerCase().indexOf(keyword.toLowerCase()) > -1,
-  );
-
-  // Фильтр по длительности
-  const filterMoviesByDuration = (films) => films.filter(
-    (item) => item.duration < 40,
-  );
+  // Фильтр по ключевому слову и длительности
+  const filterMoviesByKeyword = (keyword) =>
+    savedMovies.filter(
+      (item) => item.nameRU.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+    );
+  const filterMoviesByDuration = (films) =>
+    films.filter((item) => item.duration < 40);
 
   // Сабмит формы поиска
   const handleSearch = (keyword) => {
-    localStorage.setItem('keyword', keyword);
+    localStorage.setItem("keyword", keyword);
     setSomethingWasSearched(true);
     setFilteredMovies(filterMoviesByKeyword(keyword));
     setServerError(false);
   };
 
-  // Получение фильмов для рендера
+  // Получение фильмов
   const getMoviesToRender = () => {
     setServerError(false);
     if (!checked) {
-      if (props.savedMovies.length === 0) {
+      if (savedMovies.length === 0) {
         setMoviesToRender([]);
         setServerError(false);
         setResNotFound(true);
       } else if (!somethingWasSearched) {
-        setMoviesToRender(props.savedMovies);
+        setMoviesToRender(savedMovies);
         setResNotFound(false);
       } else if (somethingWasSearched) {
-        const keyword = localStorage.getItem('keyword');
+        const keyword = localStorage.getItem("keyword");
         const filterMovies = filterMoviesByKeyword(keyword);
         if (filterMovies.length > 0) {
           setMoviesToRender(filterMovies);
@@ -54,17 +51,15 @@ function SavedMovies(props) {
         }
       }
     } else {
-      if (props.savedMovies.length === 0) {
+      if (savedMovies.length === 0) {
         setMoviesToRender([]);
         setServerError(false);
         setResNotFound(true);
       } else if (!somethingWasSearched) {
-        const longMovies = props.savedMovies.filter(
-          (item) => item.duration < 40,
-        );
+        const longMovies = savedMovies.filter((item) => item.duration < 40);
         setMoviesToRender(longMovies);
       } else if (somethingWasSearched) {
-        const keyword = localStorage.getItem('keyword');
+        const keyword = localStorage.getItem("keyword");
         const filterMovies = filterMoviesByKeyword(keyword);
         if (filterMovies.length > 0) {
           const filterShortMovies = filterMoviesByDuration(filterMovies);
@@ -82,29 +77,33 @@ function SavedMovies(props) {
     }
   };
 
-  // Рендер фильмов
   React.useEffect(() => {
     setTimeout(() => {
       getMoviesToRender();
       localStorage.removeItem("keyword");
     }, 500);
-  }, [somethingWasSearched, filteredMovies, props.savedMovies, checked]);
+  }, [somethingWasSearched, filteredMovies, savedMovies, checked]);
 
-  // Клик по чекбоксу 'Короткометражки'
+
   const handleCheckClick = () => {
     setChecked(!checked);
-    console.log('чек чекбокс')
+    console.log("чек чекбокс");
   };
 
   return (
     <>
       <Header loggedIn={true} isVisited={false} />
-      <SearchForm onSearch={handleSearch}
+      <SearchForm
+        onSearch={handleSearch}
         onCheckClick={handleCheckClick}
-        checked={checked} />
-      <SavedMoviesCardList moviesToRender={moviesToRender}
-        onMovieDelete={props.onMovieDelete} resNotFound={resNotFound}
-        serverError={serverError} />
+        checked={checked}
+      />
+      <SavedMoviesCardList
+        moviesToRender={moviesToRender}
+        onMovieDelete={onMovieDelete}
+        resNotFound={resNotFound}
+        serverError={serverError}
+      />
       <Footer />
     </>
   );

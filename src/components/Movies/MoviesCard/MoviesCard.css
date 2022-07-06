@@ -56,6 +56,7 @@
   right: 14px;
   transition: 0.3s ease all;
 }
+
 .moviescard__button:hover {
   background-image: url(../../../images/saveIconHover.svg);
   cursor: pointer;

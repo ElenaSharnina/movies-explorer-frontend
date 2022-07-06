@@ -211,7 +211,7 @@ function App() {
     <main className="page">
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main loggedIn={loggedIn} />} />
           {/* {handleLoggedIn ? navigate("/movies") : navigate("/")} */}
           <Route
             path="/movies"
