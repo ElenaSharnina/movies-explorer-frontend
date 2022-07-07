@@ -2,16 +2,27 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../images/logo.svg";
 
-function LoginRegisterForm({ greetings, submitText, inputs, isInRigister }) {
+function LoginRegisterForm({
+  greetings,
+  submitText,
+  inputs,
+  isInRigister,
+  onSubmit,
+  isValid,
+}) {
   return (
     <section className="login-register">
       <NavLink to="/">
         <img className="login-register__logo logo" src={Logo} alt="логотип" />
       </NavLink>
       <h3 className="login-register__greetings">{greetings}</h3>
-      <form className="login-register__form">
+      <form className="login-register__form" onSubmit={onSubmit}>
         <div className="login-register__fields">{inputs}</div>
-        <button type="submit" className="login-register__button">
+        <button
+          type="submit"
+          className="login-register__button"
+          disabled={!isValid}
+        >
           {submitText}
         </button>
       </form>

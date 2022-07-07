@@ -69,3 +69,23 @@
     margin-bottom: 80px;
   }
 }
+
+.res-not-found, .server-error {
+  font-weight: 500;
+  font-size: 22px;
+  margin: 0;
+  display: block;
+}
+
+.res-not-found_hidden, .server-error_hidden {
+  display: none;
+}
+.server-error {
+  color: #EE3465;;
+}
+
+@media screen and (max-width: 600px) {
+  .res-not-found, .server-error {
+    font-size: 16px;
+  }
+}
