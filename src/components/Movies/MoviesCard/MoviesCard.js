@@ -7,7 +7,7 @@ function MoviesCard({ card, onSaveMovieClick, savedMovies }) {
   function handleSaveMovieClick() {
     setMovieIsSaved(!movieIsSaved);
     onSaveMovieClick({
-      nameRU: card.nameRU,
+      nameRU: card.nameRU || card.nameEN,
       image: `https://api.nomoreparties.co${card.image.url}`,
       trailerLink: card.trailerLink,
       duration: card.duration,
