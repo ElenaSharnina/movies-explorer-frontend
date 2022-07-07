@@ -2,10 +2,12 @@ import React from "react";
 import Lupa from "../../../images/searchLupa.svg";
 import { useState } from 'react';
 
-function SearchForm({ onSearch, onCheckClick, checked }) {
-  const [value, setValue] = useState('');
+function SearchForm({ onSearch, onCheckClick, checked, savedKeyword }) {
+
+  const [value, setValue] = useState(savedKeyword || "");
   const [isValid, setValidity] = useState(false);
   const [error, setError] = useState('');
+
 
   //валидация 
   const handleInput1Change = (evt) => {
@@ -24,6 +26,7 @@ function SearchForm({ onSearch, onCheckClick, checked }) {
   }
   // сабмит формы
   const handleSubmit = (evt) => {
+
     evt.preventDefault();
     onSearch(value);
   }
@@ -39,7 +42,7 @@ function SearchForm({ onSearch, onCheckClick, checked }) {
           <div className="searchform__form-container">
             <input
               id='keyword'
-              value={value || ""}
+              value={value}
               onChange={handleInput1Change}
               type="search"
               placeholder="Фильм"

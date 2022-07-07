@@ -14,12 +14,12 @@ function Movies({ savedMovies, onSaveMovieClick }) {
   const [filteredShortMovies, setFilteredShortMovies] = React.useState([]);
   const [moviesToRender, setMoviesToRender] = React.useState([]);
   const [preloaderIsVisible, setPreloaderIsVisible] = React.useState(false);
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState(localStorage.getItem('checked') || false);
   const [resNotFound, setResNotFound] = React.useState(false);
   const [serverError, setServerError] = React.useState(false);
   const [anotherButtonVisible, setAnotherButtonVisible] = React.useState(false);
   // const [somethingWasSearched, setSomethingWasSearched] = React.useState(false);
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const isMobile = useMediaPredicate("(max-width: 550px)");
   const isPad = useMediaPredicate("(min-width: 551px)");
   const isDexstop = useMediaPredicate("(min-width: 768px)");
@@ -94,6 +94,7 @@ function Movies({ savedMovies, onSaveMovieClick }) {
 
   //сабмит поиска фильмов
   function handleSearch(keyword) {
+    localStorage.setItem("allMoviesKeyword", keyword);
     setDefaultStates();
     setPreloaderIsVisible(true);
     const filterMovies = allMovies.filter(
@@ -139,6 +140,7 @@ function Movies({ savedMovies, onSaveMovieClick }) {
   }
   // логика рендера
   const renderMovies = () => {
+
     if (!checked) {
       setServerError(false);
       if (filteredMovies.length > 0) {
@@ -171,12 +173,14 @@ function Movies({ savedMovies, onSaveMovieClick }) {
 
   if (checked) {
     console.log("hi");
+    localStorage.setItem('checked', checked);
   }
   // меняем рендер
   React.useEffect(() => {
     renderMovies();
-    localStorage.removeItem("keyword");
-  }, [filteredMovies, filteredLongMovies, maxCards, checked, navigate]);
+
+    // localStorage.removeItem("keyword");
+  }, [filteredMovies, filteredLongMovies, maxCards, checked,]);
 
   // клик по чекбоксу
   function handleCheckClick() {
@@ -197,6 +201,7 @@ function Movies({ savedMovies, onSaveMovieClick }) {
         onSearch={handleSearch}
         onCheckClick={handleCheckClick}
         checked={checked}
+        savedKeyword={localStorage.getItem("allMoviesKeyword")}
       />
       <MoviesCardList
         moviesToRender={moviesToRender}

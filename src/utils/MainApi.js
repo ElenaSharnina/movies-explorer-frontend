@@ -34,10 +34,14 @@ export class Api {
     movieId,
     nameRU,
     nameEN,
+    token
   ) =>
     fetch(`${this._url}/movies`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         country,
         director,
@@ -53,10 +57,13 @@ export class Api {
       }),
     }).then(this._checkResponse);
 
-  deleteMovieFromSaved = (movieId) =>
+  deleteMovieFromSaved = (movieId, token) =>
     fetch(`${this._url}/movies/${movieId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     }).then(this._checkResponse);
 
   getUserInfo(token) {
@@ -69,10 +76,13 @@ export class Api {
     })
       .then(this._checkResponse)
   }
-  changeUserInfo(name, email) {
+  changeUserInfo(name, email, token) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name,
         email

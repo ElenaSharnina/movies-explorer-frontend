@@ -12,6 +12,7 @@ function SavedMovies({ savedMovies, onMovieDelete }) {
   const [serverError, setServerError] = React.useState(false);
   const [checked, setChecked] = React.useState(false);
 
+
   // Фильтр по ключевому слову и длительности
   const filterMoviesByKeyword = (keyword) =>
     savedMovies.filter(
@@ -80,7 +81,7 @@ function SavedMovies({ savedMovies, onMovieDelete }) {
   React.useEffect(() => {
     setTimeout(() => {
       getMoviesToRender();
-      localStorage.removeItem("keyword");
+      // localStorage.removeItem("keyword");
     }, 500);
   }, [somethingWasSearched, filteredMovies, savedMovies, checked]);
 
@@ -97,6 +98,7 @@ function SavedMovies({ savedMovies, onMovieDelete }) {
         onSearch={handleSearch}
         onCheckClick={handleCheckClick}
         checked={checked}
+      // savedKeyword={localStorage.getItem("keyword")}
       />
       <SavedMoviesCardList
         moviesToRender={moviesToRender}

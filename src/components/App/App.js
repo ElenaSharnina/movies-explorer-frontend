@@ -125,6 +125,7 @@ function App() {
   }) => {
     const isSaved = savedMovies.some((i) => i.nameRU === nameRU);
     if (!isSaved) {
+      const token = localStorage.getItem("token");
       api
         .saveMovie(country,
           director,
@@ -137,6 +138,7 @@ function App() {
           movieId,
           nameRU,
           nameEN,
+          token
         )
         .then((savedMovie) => {
           setSavedMovies([savedMovie, ...savedMovies]);
@@ -153,8 +155,9 @@ function App() {
 
   // удаление фильма
   const handleMovieDelete = (movieId) => {
+    const token = localStorage.getItem("token");
     api
-      .deleteMovieFromSaved(movieId)
+      .deleteMovieFromSaved(movieId, token)
       .then(() => {
         setSavedMovies((state) => state.filter((m) => m._id !== movieId));
       })
@@ -186,12 +189,15 @@ function App() {
     localStorage.removeItem("long-movies");
     localStorage.removeItem("short-movies");
     localStorage.removeItem("keyword");
+    localStorage.removeItem("allMoviesKeyword");
+    localStorage.removeItem("checked");
     setLoggedIn(false);
     navigate("/");
   }
   // изменение данных профиля
   function handleChangeUserInfo({ name, email }) {
-    api.changeUserInfo(name, email)
+    const token = localStorage.getItem("token");
+    api.changeUserInfo(name, email, token)
       .then((data) => {
         setCurrentUser(data);
         setEmail(data.email);

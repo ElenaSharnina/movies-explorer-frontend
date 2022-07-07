@@ -82,6 +82,7 @@ function Register({ onRegister }) {
           <input
             autoComplete="off"
             className="register__input"
+            pattern='^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$'
             type="email"
             id="email-input"
             name="email"

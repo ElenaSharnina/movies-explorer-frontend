@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Header from "../Header/Header";
 
 
+
 function Profile({ onExit, onSubmit }) {
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -13,6 +14,11 @@ function Profile({ onExit, onSubmit }) {
   const [errorEmail, setErrorEmail] = React.useState('');
   const [isValidName, setValidityName] = React.useState(false);
   const [errorName, setErrorName] = React.useState('');
+  const [isChanged, setIsChanged] = React.useState(false);
+  const [isValid, setIsValid] = React.useState(false);
+
+
+
 
   const handleInputEmailChange = (event) => {
     const input = event.target;
@@ -40,6 +46,12 @@ function Profile({ onExit, onSubmit }) {
     setEmail(currentUser.email);
   }, [currentUser]);
 
+  React.useEffect(() => {
+    setIsChanged(
+      (!(name === currentUser.name) || !(email === currentUser.email))
+    );
+    setIsValid(isValidEmail && isValidName);
+  }, [currentUser, email, isValidEmail, isValidName, name]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -75,6 +87,7 @@ function Profile({ onExit, onSubmit }) {
               <label className="profile__lable">E-mail</label>
               <input
                 className="profile__input"
+                pattern='^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$'
                 type="email"
                 name="email"
                 autoComplete="off"
@@ -86,7 +99,7 @@ function Profile({ onExit, onSubmit }) {
             </div>
 
             <button
-              disabled={!isValidEmail && !isValidName}
+              disabled={!isValid && !isChanged}
               type="submit"
               className="profile__button profile__button_type_edit"
             >
