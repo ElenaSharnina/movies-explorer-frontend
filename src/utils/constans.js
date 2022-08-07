@@ -1,5 +1,5 @@
 export const apiConfig = {
-  url: "https://api.mydiploma.nomoredomains.xyz",
+  url: "http://localhost:3000",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
