@@ -69,6 +69,10 @@
   color: #12bb61;
 }
 
+.login-register__button:disabled {
+  background-color: #868d89;
+  cursor: default;
+}
 @media screen and (max-width: 768px) {
   .login-register {
     min-height: 560px;
@@ -94,12 +98,12 @@
     padding-bottom: 80px;
   }
   .login-register {
-    height: 88vh;
+    height: 80vh;
     margin-top: 56px;
     min-height: 400px;
   }
   .login-register__form {
-    height: 65vh;
+    height: 50vh;
     min-height: 200px;
   }
   .login-register__button,

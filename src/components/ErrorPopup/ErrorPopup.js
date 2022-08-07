@@ -1,31 +1,31 @@
 import React from "react";
-import successPic from "../../images/success.png";
 import errorPic from "../../images/error.png";
+import successPic from "../../images/success.png";
 
-function InfoTooltip({ isOpen, onClose, isSuccess }) {
+function ErrorPopup({ isOpen, onClose, isSuccess }) {
   return (
     <div
-      className={`infoTooltip ${isOpen ? "infoTooltip_active" : ""}`}
+      className={`errorr ${isOpen ? "error_active" : ""}`}
     >
-      <div className="infoTooltip__container">
+      <div className="error__container">
         <button
           type="button"
-          className="infoTooltip__close-icon"
+          className="error__close-icon"
           aria-label="Закрыть"
           onClick={onClose}
         ></button>
         <img
-          className="infoTooltip__image"
+          className="error__image"
           src={!isSuccess ? errorPic : successPic}
           alt=""
         />
-        <p className="infoTooltip__text">
+        <p className="error__text">
           {isSuccess
-            ? "Вы успешно зарегистрировались!"
+            ? "Вы успешно поменяли данные!"
             : "Что-то пошло не так! Попробуйте ещё раз."}
         </p>
       </div>
     </div>
   );
 }
-export default InfoTooltip;
+export default ErrorPopup;

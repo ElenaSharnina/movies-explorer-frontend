@@ -1,4 +1,4 @@
-.infoTooltip {
+.errorr {
   position: fixed;
   display: flex;
   align-items: center;
@@ -13,46 +13,45 @@
   opacity: 0;
 }
 
-.infoTooltip_active {
+.error_active {
   visibility: visible;
   display: flex;
   opacity: 0.9;
-  z-index: 999;
 }
 
-.infoTooltip__image {
-  width: 120px;
-  height: 120px;
+.error__image {
+  width: 40px;
+  height: 40px;
   align-self: center;
 }
 
-.infoTooltip__close-icon {
+.error__close-icon {
   background-image: url(../../images/closeIcon.svg);
-  background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   position: absolute;
-  top: -39px;
-  right: -41px;
-  width: 30px;
-  height: 30px;
+  top: -20px;
+  right: -20px;
+  width: 20px;
+  height: 20px;
   border: 0;
   background-color: transparent;
 }
-.infoTooltip__close-icon:hover {
+.error__close-icon:hover {
   cursor: pointer;
   opacity: 0.6;
 }
 
-.infoTooltip__text {
+.error__text {
   font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 20px;
+  line-height: 26px;
   text-align: center;
   color: #000000;
 }
 
-.infoTooltip__container {
+.error__container {
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -60,19 +59,19 @@
   background-color: #ffffff;
   padding-top: 60px;
   width: 430px;
-  min-height: 181px;
+  min-height: 150px;
   border-radius: 10px;
-  padding: 34px 36px 37px 34px;
+  padding: 30px 20px 20px 20px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   z-index: 2;
 }
 
 @media screen and (max-width: 768px) {
-  .infoTooltip__container {
+  .error__container {
     margin: auto 19px;
     padding: 25px 22px 25px 22px;
   }
-  .infoTooltip__close-icon {
+  .error__close-icon {
     width: 20px;
     height: 20px;
     right: 0;
@@ -80,7 +79,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .infoTooltip__text {
+  .error__text {
     font-weight: 900;
     font-size: 20px;
     line-height: 24px;

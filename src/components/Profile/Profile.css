@@ -32,6 +32,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 
 .profile__item:nth-child(1) {
@@ -78,7 +79,7 @@
   background-color: inherit;
   transition: 0.3s ease all;
   padding: 7px 20px;
-  border-radius: 20px;
+  border-radius: 70px;
   width: fit-content;
   margin: 0 auto;
 }
@@ -91,6 +92,16 @@
 .profile__button:hover {
   cursor: pointer;
   background-color: #e8e8e8;
+}
+
+/* .profile__button:disabled {
+  cursor: default;
+} */
+
+.error_place_profile {
+ position: absolute;
+ top:50px;
+ right: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -117,8 +128,5 @@
   .profile__container {
     height: 90vh;
   }
-  .profile__item:nth-child(2) {
-    padding-bottom: 40vh;
-  }
-
+  
 }
