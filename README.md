@@ -22,6 +22,9 @@
 `backend` запутится на http://localhost:3000
 `frontend` запутится на http://localhost:3001
 
+### Используемые версии:
+`react: 18.2.0 ` `react-router-dom: 6.3.0` `npm: 8.1.2`
+
 ## Используемые технологии:
 
 * Верстка на гридах и флексах;
@@ -55,3 +58,6 @@
 <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
 <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
 <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
+
+### Планы по доработке проекта:
+Деплой проекта на бесплатном хостинге
